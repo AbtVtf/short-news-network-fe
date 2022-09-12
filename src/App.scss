@@ -1,0 +1,11 @@
+.app-container {
+  background-color: grey;
+  .app-header-container {
+    top: 0px;
+    position: sticky;
+    z-index: 9999;
+  }
+  .app-feed-container {
+    margin-top: 30px;
+  }
+}

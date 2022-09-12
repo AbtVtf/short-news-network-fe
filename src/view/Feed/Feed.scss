@@ -1,0 +1,11 @@
+.feed-container {
+  background-color: grey;
+  .feed-header-container {
+    top: 0px;
+    position: sticky;
+    z-index: 9999;
+  }
+  .feed-content-container {
+    margin-top: 30px;
+  }
+}

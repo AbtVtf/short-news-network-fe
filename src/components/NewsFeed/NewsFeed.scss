@@ -1,0 +1,27 @@
+.component-news-feed-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .component-news-filter-container {
+    width: 80vw;
+    margin-bottom: 20px;
+    .MuiFormLabel-root {
+      color: white;
+    }
+    .MuiInputBase-root {
+      color: white;
+    }
+    .MuiOutlinedInput-notchedOutline {
+      border: 1px solid rgb(185, 184, 184);
+    }
+  }
+  .component-cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 80vw;
+    .component-card-wrapper {
+    }
+  }
+}

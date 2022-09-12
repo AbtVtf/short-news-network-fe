@@ -1,0 +1,41 @@
+.component-article-card-container {
+  width: 80vw;
+  background-color: grey;
+  //   height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+  .component-article-title-wrapper {
+    background-color: white;
+    margin-top: 0;
+    padding: 0 20px;
+    .component-article-title {
+      font-size: 25px;
+      font-weight: 500;
+    }
+  }
+  .component-article-text-wrapper {
+    padding: 0 20px;
+    .component-article-text-wrapper {
+      font-weight: 500;
+      font-size: 20px;
+    }
+  }
+  .component-article-button-container {
+    display: flex;
+    gap: 20px;
+    .component-article-button-back {
+      font-size: 20px;
+      background-color: rgb(221, 96, 96);
+      border: none;
+      padding: 10px;
+    }
+    .component-article-button-full {
+      font-size: 20px;
+      background-color: rgb(216, 229, 97);
+      border: none;
+      padding: 10px;
+    }
+  }
+}
