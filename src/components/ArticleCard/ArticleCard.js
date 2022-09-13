@@ -13,7 +13,7 @@ import "./ArticleCard.scss";
 
 const ArticleCard = (props) => {
   // PROPS
-  const { title = "a", text = [], link = "" } = props;
+  const { title = "", text = [], link = "" } = props;
 
   // CONSTANTS USING LIBRARYS
 

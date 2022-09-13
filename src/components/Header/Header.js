@@ -1,8 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 // STYLES
 import "./Header.scss";
-import logo from "./logo.PNG";
+import logo from "./images/logo-white.png";
 // LIBRARIES
 
 // CONSTANTS & MOCKS
@@ -17,6 +18,7 @@ const Header = (props) => {
   // CONSTANTS USING LIBRARYS
 
   // CONSTANTS USING HOOKS
+  const navigate = useNavigate();
 
   // GENERAL CONSTANTS
 
@@ -25,11 +27,13 @@ const Header = (props) => {
   // REQUEST API FUNCTIONS
 
   // HANDLERS FUNCTIONS
-
+  const handleHome = () => {
+    navigate(`/`);
+  };
   return (
     <div className="component-header-container">
-      <div className="component-logo-container">
-        <img src={logo} alt="" />
+      <div className="component-header-logo-container" onClick={handleHome}>
+        <img src={logo} alt="" className="component-header-logo" />
       </div>
     </div>
   );

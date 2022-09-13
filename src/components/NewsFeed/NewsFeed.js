@@ -9,6 +9,13 @@ import Select from "@mui/material/Select";
 import "./NewsFeed.scss";
 import { useNavigate } from "react-router-dom";
 // LIBRARIES
+import africa from "./images/africa-black.png";
+import americas from "./images/americas-black.png";
+import asia from "./images/asia-black.png";
+import australia from "./images/australia-black.png";
+import china from "./images/china-black.png";
+import europe from "./images/europe-black.png";
+import globe from "./images/globe-black.png";
 
 // CONSTANTS & MOCKS
 
@@ -24,7 +31,7 @@ const NewsFeed = () => {
   const [data, setData] = useState();
   const [category, setCategory] = useState("country");
   const navigate = useNavigate();
-
+  const [background, setBackgound] = useState(globe);
   // GENERAL CONSTANTS
 
   // USE EFFECT FUNCTION
@@ -47,7 +54,22 @@ const NewsFeed = () => {
           setData(response["data"]);
         });
     }
+
+    if (category === "africa") {
+      setBackgound(africa);
+    } else if (category === `americas`) {
+      setBackgound(americas);
+    } else if (category === `asia`) {
+      setBackgound(asia);
+    } else if (category === `australia`) {
+      setBackgound(australia);
+    } else if (category === `china`) {
+      setBackgound(china);
+    } else if (category === `europe`) {
+      setBackgound(europe);
+    }
   }, [category]);
+
   // REQUEST API FUNCTIONS
 
   // HANDLERS FUNCTIONS
@@ -60,10 +82,14 @@ const NewsFeed = () => {
   };
 
   return (
-    <div className="component-news-feed-container">
+    <div
+      className="component-news-feed-container"
+      style={{ backgroundImage: `url(${background})` }}
+    >
       <div className="component-news-filter-container">
+        <p className="component-news-filter-text">Filter:</p>
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Country</InputLabel>
+          <InputLabel id="demo-simple-select-label">Region</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"

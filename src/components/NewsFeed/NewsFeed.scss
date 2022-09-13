@@ -2,9 +2,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  background-attachment: fixed;
   .component-news-filter-container {
     width: 80vw;
     margin-bottom: 20px;
+    display: flex;
+    .component-news-filter-text {
+      font-size: 40px;
+      margin: 0;
+      margin-top: 10px;
+      font-weight: 450;
+      letter-spacing: 2px;
+      color: white;
+      font-family: "Oswald";
+      margin-right: 20px;
+    }
     .MuiFormLabel-root {
       color: white;
     }
@@ -19,7 +34,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 50px;
     width: 80vw;
     .component-card-wrapper {
     }

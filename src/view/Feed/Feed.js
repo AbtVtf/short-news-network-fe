@@ -5,7 +5,9 @@ import "./Feed.scss";
 function Feed() {
   return (
     <div className="feed-container">
-      <Header />
+      <div className="feed-header-container">
+        <Header />
+      </div>
       <div className="feed-content-container">
         <NewsFeed category={"africa"} />
       </div>
