@@ -16,6 +16,7 @@ import australia from "./images/australia-black.png";
 import china from "./images/china-black.png";
 import europe from "./images/europe-black.png";
 import globe from "./images/globe-black.png";
+import { useDispatch } from "react-redux";
 
 // CONSTANTS & MOCKS
 
@@ -32,43 +33,45 @@ const NewsFeed = () => {
   const [category, setCategory] = useState("country");
   const navigate = useNavigate();
   const [background, setBackgound] = useState(globe);
+  const dispatch = useDispatch();
   // GENERAL CONSTANTS
 
   // USE EFFECT FUNCTION
   useEffect(() => {
-    if (category === "country" || category === "all") {
-      console.log("country");
-      axios
-        .get("https://short-news-network.herokuapp.com/all-titles")
-        .then((response) => {
-          // console.log(response);
-          setData(response["data"]);
-        });
-    } else {
-      axios
-        .get(
-          `https://short-news-network.herokuapp.com/category?cat=${category}`
-        )
-        .then((response) => {
-          // console.log(response);
-          setData(response["data"]);
-        });
-    }
+    dispatch(handleCategory("test"));
+    // if (category === "country" || category === "all") {
+    //   console.log("country");
+    //   axios
+    //     .get("https://short-news-network.herokuapp.com/all-titles")
+    //     .then((response) => {
+    //       // console.log(response);
+    //       setData(response["data"]);
+    //     });
+    // } else {
+    //   axios
+    //     .get(
+    //       `https://short-news-network.herokuapp.com/category?cat=${category}`
+    //     )
+    //     .then((response) => {
+    //       // console.log(response);
+    //       setData(response["data"]);
+    //     });
+    // }
 
-    if (category === "africa") {
-      setBackgound(africa);
-    } else if (category === `americas`) {
-      setBackgound(americas);
-    } else if (category === `asia`) {
-      setBackgound(asia);
-    } else if (category === `australia`) {
-      setBackgound(australia);
-    } else if (category === `china`) {
-      setBackgound(china);
-    } else if (category === `europe`) {
-      setBackgound(europe);
-    }
-  }, [category]);
+    // if (category === "africa") {
+    //   setBackgound(africa);
+    // } else if (category === `americas`) {
+    //   setBackgound(americas);
+    // } else if (category === `asia`) {
+    //   setBackgound(asia);
+    // } else if (category === `australia`) {
+    //   setBackgound(australia);
+    // } else if (category === `china`) {
+    //   setBackgound(china);
+    // } else if (category === `europe`) {
+    //   setBackgound(europe);
+    // }
+  }, []);
 
   // REQUEST API FUNCTIONS
 
