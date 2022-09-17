@@ -1,10 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import NewsCard from "../NewsCard/NewsCard";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+
 // STYLES
 import "./NewsFeed.scss";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +27,6 @@ const NewsFeed = () => {
 
   // CONSTANTS USING HOOKS
   const [data, setData] = useState();
-  const [category, setCategory] = useState("country");
   const navigate = useNavigate();
   const [background, setBackgound] = useState(globe);
   const dispatch = useDispatch();
@@ -38,7 +34,7 @@ const NewsFeed = () => {
 
   // USE EFFECT FUNCTION
   useEffect(() => {
-    dispatch(handleCategory("test"));
+    // dispatch(handleCategory("test"));
     // if (category === "country" || category === "all") {
     //   console.log("country");
     //   axios
@@ -57,7 +53,6 @@ const NewsFeed = () => {
     //       setData(response["data"]);
     //     });
     // }
-
     // if (category === "africa") {
     //   setBackgound(africa);
     // } else if (category === `americas`) {
@@ -76,9 +71,6 @@ const NewsFeed = () => {
   // REQUEST API FUNCTIONS
 
   // HANDLERS FUNCTIONS
-  const handleChange = (event) => {
-    setCategory(event.target.value);
-  };
 
   const handleArticle = (id) => {
     navigate(`/article/${id}`);
@@ -89,27 +81,6 @@ const NewsFeed = () => {
       className="component-news-feed-container"
       style={{ backgroundImage: `url(${background})` }}
     >
-      <div className="component-news-filter-container">
-        <p className="component-news-filter-text">Filter:</p>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Region</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={category}
-            label="age"
-            onChange={handleChange}
-          >
-            <MenuItem value={"all"}>All News</MenuItem>
-            <MenuItem value={"asia"}>Asia</MenuItem>
-            <MenuItem value={"europe"}>Europe</MenuItem>
-            <MenuItem value={"americas"}>Americas</MenuItem>
-            <MenuItem value={"china"}>China</MenuItem>
-            <MenuItem value={"africa"}>Africa</MenuItem>
-            <MenuItem value={"australia"}>Australia</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
       <div className="component-cards-container">
         {data?.map((item, index) => {
           return (

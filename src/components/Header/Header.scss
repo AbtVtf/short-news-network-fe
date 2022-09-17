@@ -1,16 +1,61 @@
 .component-header-container {
   width: 100vw;
   height: 10vh;
-  background-color: #393e46;
+  background-color: #242429;
   border-radius: 0 0 5px 5px;
   box-shadow: 2px 10px 15px 5px rgba(0, 0, 0, 0.56);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   .component-header-logo-container {
-    margin-left: 9%;
+    margin-bottom: 5px;
+    align-self: flex-end;
     .component-header-logo {
-      width: 100px;
+      width: 130px;
+    }
+  }
+  .component-header-logo-text {
+    font-family: "Roboto";
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #1963ed;
+    font-size: 50px;
+    margin: 0;
+    align-self: flex-end;
+  }
+  .component-header-filter-container {
+    width: 40vw;
+    margin-bottom: 10px;
+    align-self: flex-end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border: 2px solid #1963ed;
+    border-radius: 5px;
+
+    .component-header-filter-text {
+      font-size: 40px;
+      margin: 0;
+      margin-top: 10px;
+      font-weight: 450;
+      // letter-spacing: 2px;
+      color: #1963ed;
+      font-family: "Roboto";
+      margin-right: 20px;
+    }
+    .MuiFormLabel-root {
+      font-size: 20px;
+      font-weight: 450;
+      color: #1963ed;
+      border: none;
+    }
+    .MuiInputBase-root {
+      text-align: center;
+      font-weight: 450;
+      color: #1963ed;
+      height: 40px;
+    }
+    .MuiOutlinedInput-notchedOutline {
+      border: 2px solid #123a83cc;
     }
   }
 }

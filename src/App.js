@@ -9,7 +9,9 @@ import AppRoutes from "./config/appRoutes";
 const App = () => {
   return (
     <BrowserRouter>
-      <AppRoutes />
+      <div style={{ backgroundColor: "#181923", height: "100vh" }}>
+        <AppRoutes />
+      </div>
     </BrowserRouter>
   );
 };

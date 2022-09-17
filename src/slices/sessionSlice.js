@@ -10,8 +10,8 @@ export const sessionSlice = createSlice({
   },
 
   reducers: {
-    handleChangeLanguage: (state, action) => {
-      state.language = action.payload;
+    handleChangeCategory: (state, action) => {
+      state.category = action.payload;
     },
   },
   extraReducers: {
@@ -32,6 +32,6 @@ export const sessionSlice = createSlice({
 export const isLoading = (state) => state.session.isLoading;
 export const category = (state) => state.session.category;
 
-export const { handleChangeLanguage } = sessionSlice.actions;
+export const { handleChangeCategory } = sessionSlice.actions;
 
 export default sessionSlice.reducer;

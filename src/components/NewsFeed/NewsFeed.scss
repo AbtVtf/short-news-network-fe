@@ -6,30 +6,8 @@
   background-size: contain;
   background-position: center center;
   background-attachment: fixed;
-  .component-news-filter-container {
-    width: 80vw;
-    margin-bottom: 20px;
-    display: flex;
-    .component-news-filter-text {
-      font-size: 40px;
-      margin: 0;
-      margin-top: 10px;
-      font-weight: 450;
-      letter-spacing: 2px;
-      color: white;
-      font-family: "Oswald";
-      margin-right: 20px;
-    }
-    .MuiFormLabel-root {
-      color: white;
-    }
-    .MuiInputBase-root {
-      color: white;
-    }
-    .MuiOutlinedInput-notchedOutline {
-      border: 1px solid rgb(185, 184, 184);
-    }
-  }
+  height: 100%;
+
   .component-cards-container {
     display: flex;
     flex-direction: column;
