@@ -7,6 +7,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Article from "../view/Article/Article";
 import Feed from "../view/Feed/Feed";
+import RegisterPage from "../view/RegisterPage/RegisterPage";
 
 const AppRoutes = () => {
   // CONSTANTS USING HOOKS
@@ -22,6 +23,8 @@ const AppRoutes = () => {
       <Route path="/" element={<Feed />} />
 
       <Route path="/article/:id" element={<Article />} />
+
+      <Route path="/register" element={<RegisterPage />} />
     </Routes>
   );
 };

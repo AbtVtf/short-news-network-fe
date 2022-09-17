@@ -7,6 +7,7 @@ export const sessionSlice = createSlice({
     isLoading: false,
     category: "country",
     selectedNews: [],
+    token: "10",
   },
 
   reducers: {
@@ -40,6 +41,7 @@ export const sessionSlice = createSlice({
 });
 
 export const isLoading = (state) => state.session.isLoading;
+export const token = (state) => state.session.token;
 export const category = (state) => state.session.category;
 export const selectedNews = (state) => state.session.selectedNews;
 export const { handleChangeCategory } = sessionSlice.actions;

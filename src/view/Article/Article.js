@@ -39,9 +39,6 @@ const Article = () => {
 
   return (
     <div className="article-container">
-      <div className="article-header-container">
-        <Header />
-      </div>
       <div className="article-content-container">
         <ArticleCard
           title={data?.title[0].title}

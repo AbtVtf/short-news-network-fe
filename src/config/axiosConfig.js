@@ -1,4 +1,5 @@
 import axios from "axios";
+// import store from "../store/store";
 // import { handleLogOutUser } from "slices/sessionSlice";
 
 const baseURL = "https://short-news-network.herokuapp.com/";
@@ -32,8 +33,8 @@ export const REST = axios.create({
 
 // REST.interceptors.request.use(
 //   async (config) => {
-//     const token = store.getState().session.loggedState.token;
-//     // console.log('TOKEN',token)
+//     const token = store.getState().session.token;
+//     console.log("TOKEN", token);
 //     if (token) {
 //       config.headers["Authorization"] = `Bearer ${token}`;
 //     }
