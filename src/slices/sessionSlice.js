@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { handleCategory } from "../api/sessionApi";
-// import { handleCategory } from "api/sessionApi";
+import { handleAll, handleCategory } from "../api/sessionApi";
 
 export const sessionSlice = createSlice({
   name: "session",
   initialState: {
     isLoading: false,
     category: "country",
+    selectedNews: [],
   },
 
   reducers: {
@@ -16,12 +16,22 @@ export const sessionSlice = createSlice({
   },
   extraReducers: {
     // ============= handleCategory REQUEST HANDLERS ============= //
+    [handleAll.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [handleAll.fulfilled]: (state, action) => {
+      state.selectedNews = action.payload["data"];
+    },
+    [handleAll.rejected]: (state, action) => {
+      state.errorMessage = action.error.message;
+    },
+
+    // ============= HANDLE INDIVIDUAL CATEGORIES ============= //
     [handleCategory.pending]: (state) => {
       state.isLoading = true;
     },
     [handleCategory.fulfilled]: (state, action) => {
-      // TODO: use only one method for decoding per project
-      console.log("aici", action.payload);
+      state.selectedNews = action.payload["data"];
     },
     [handleCategory.rejected]: (state, action) => {
       state.errorMessage = action.error.message;
@@ -31,7 +41,7 @@ export const sessionSlice = createSlice({
 
 export const isLoading = (state) => state.session.isLoading;
 export const category = (state) => state.session.category;
-
+export const selectedNews = (state) => state.session.selectedNews;
 export const { handleChangeCategory } = sessionSlice.actions;
 
 export default sessionSlice.reducer;

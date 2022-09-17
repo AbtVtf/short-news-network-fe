@@ -13,7 +13,9 @@ import australia from "./images/australia-black.png";
 import china from "./images/china-black.png";
 import europe from "./images/europe-black.png";
 import globe from "./images/globe-black.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { handleAll } from "../../api/sessionApi";
+import { selectedNews, category } from "../../slices/sessionSlice";
 
 // CONSTANTS & MOCKS
 
@@ -26,47 +28,34 @@ const NewsFeed = () => {
   // CONSTANTS USING LIBRARYS
 
   // CONSTANTS USING HOOKS
-  const [data, setData] = useState();
+
   const navigate = useNavigate();
   const [background, setBackgound] = useState(globe);
   const dispatch = useDispatch();
+  const news = useSelector(selectedNews);
+  const selectedCat = useSelector(category);
   // GENERAL CONSTANTS
 
   // USE EFFECT FUNCTION
   useEffect(() => {
-    // dispatch(handleCategory("test"));
-    // if (category === "country" || category === "all") {
-    //   console.log("country");
-    //   axios
-    //     .get("https://short-news-network.herokuapp.com/all-titles")
-    //     .then((response) => {
-    //       // console.log(response);
-    //       setData(response["data"]);
-    //     });
-    // } else {
-    //   axios
-    //     .get(
-    //       `https://short-news-network.herokuapp.com/category?cat=${category}`
-    //     )
-    //     .then((response) => {
-    //       // console.log(response);
-    //       setData(response["data"]);
-    //     });
-    // }
-    // if (category === "africa") {
-    //   setBackgound(africa);
-    // } else if (category === `americas`) {
-    //   setBackgound(americas);
-    // } else if (category === `asia`) {
-    //   setBackgound(asia);
-    // } else if (category === `australia`) {
-    //   setBackgound(australia);
-    // } else if (category === `china`) {
-    //   setBackgound(china);
-    // } else if (category === `europe`) {
-    //   setBackgound(europe);
-    // }
-  }, []);
+    window.scrollTo(0, 0);
+
+    if (selectedCat === "africa") {
+      setBackgound(africa);
+    } else if (selectedCat === `americas`) {
+      setBackgound(americas);
+    } else if (selectedCat === `asia`) {
+      setBackgound(asia);
+    } else if (selectedCat === `australia`) {
+      setBackgound(australia);
+    } else if (selectedCat === `china`) {
+      setBackgound(china);
+    } else if (selectedCat === `europe`) {
+      setBackgound(europe);
+    } else if (selectedCat === `country`) {
+      setBackgound(globe);
+    }
+  }, [selectedCat]);
 
   // REQUEST API FUNCTIONS
 
@@ -82,7 +71,7 @@ const NewsFeed = () => {
       style={{ backgroundImage: `url(${background})` }}
     >
       <div className="component-cards-container">
-        {data?.map((item, index) => {
+        {news?.map((item, index) => {
           return (
             <div
               className="component-card-wrapper"

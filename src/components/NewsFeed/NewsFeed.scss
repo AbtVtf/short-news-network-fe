@@ -6,15 +6,13 @@
   background-size: contain;
   background-position: center center;
   background-attachment: fixed;
-  height: 100%;
-
+  padding-bottom: 30px;
+  background-color: #181923;
   .component-cards-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 50px;
     width: 80vw;
-    .component-card-wrapper {
-    }
   }
 }

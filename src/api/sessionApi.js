@@ -1,15 +1,26 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-// import { REST } from "config/axiosConfig";
+import { REST } from "../config/axiosConfig";
+
+export const handleAll = createAsyncThunk(
+  "session/handleAll",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await REST.get("/all-titles");
+      return response;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
 
 export const handleCategory = createAsyncThunk(
-  "user/handleCategory",
+  "session/handleCategory",
   async (data, { rejectWithValue }) => {
-    console.log({ data });
-    // try {
-    //   const response = await REST.post("/authenticate");
-    //   return response.data.jwt;
-    // } catch (err) {
-    //   return rejectWithValue(err.response.data);
-    // }
+    try {
+      const response = await REST.get(`/category?cat=${data}`);
+      return response;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
   }
 );

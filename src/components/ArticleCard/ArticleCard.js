@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 // STYLES
 import "./ArticleCard.scss";
 // LIBRARIES
@@ -30,21 +30,13 @@ const ArticleCard = (props) => {
   const handleBack = () => {
     navigate(`/`);
   };
-  console.log({ link });
   return (
     <div className="component-article-card-container">
-      <div className="component-article-title-wrapper">
-        <p className="component-article-title">{title}</p>
-      </div>
-      <div className="component-article-text-wrapper">
-        {text?.map((item) => {
-          return <p className="component-article-text-wrapper">{item}</p>;
-        })}
-      </div>
       <div className="component-article-button-container">
-        <button className="component-article-button-back" onClick={handleBack}>
+        <ArrowBackIosIcon onClick={handleBack} />
+        {/* <button className="component-article-button-back" onClick={handleBack}>
           Back
-        </button>
+        </button> */}
         {/* <button className="component-article-button-full">Full Article</button> */}
         {/* <input
           className="component-article-button-full"
@@ -52,6 +44,14 @@ const ArticleCard = (props) => {
           onClick={`location.href='${link}';`}
           value="Full Article"
         /> */}
+      </div>
+      <div className="component-article-title-wrapper">
+        <p className="component-article-title">{title}</p>
+      </div>
+      <div className="component-article-text-wrapper">
+        {text?.map((item) => {
+          return <p className="component-article-text-wrapper">{item}</p>;
+        })}
       </div>
     </div>
   );

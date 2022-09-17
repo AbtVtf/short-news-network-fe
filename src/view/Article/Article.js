@@ -30,14 +30,12 @@ const Article = () => {
     axios
       .get(`https://short-news-network.herokuapp.com/article?id=${id}`)
       .then((response) => {
-        // console.log(response);
         setData(response["data"]);
       });
   }, []);
   // REQUEST API FUNCTIONS
 
   // HANDLERS FUNCTIONS
-  //   console.log(data.link[0].link);
 
   return (
     <div className="article-container">
