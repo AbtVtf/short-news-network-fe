@@ -40,7 +40,7 @@ const Article = () => {
   return (
     <div className="article-container">
       <div className="article-content-container">
-        {data && (
+        {data.title[0] && (
           <ArticleCard title={data?.title[0]?.title} text={data?.text} />
         )}
       </div>
