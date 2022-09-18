@@ -20,7 +20,7 @@ export const sessionSlice = createSlice({
       username: "",
       userId: 0,
     },
-    article: {},
+    article: null,
     titleId: 0,
   },
 

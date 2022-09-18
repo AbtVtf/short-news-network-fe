@@ -35,16 +35,18 @@ const Article = () => {
     dispatch(handleArticle(id));
   }, []);
   // REQUEST API FUNCTIONS
-
+  console.log(data);
   // HANDLERS FUNCTIONS
   return (
     <div className="article-container">
       <div className="article-content-container">
-        <ArticleCard
-          title={data?.title[0]?.title}
-          link={data?.link[0]?.link}
-          text={data?.text}
-        />
+        {data && (
+          <ArticleCard
+            title={data?.title[0]?.title}
+            link={data?.link[0]?.link}
+            text={data?.text}
+          />
+        )}
       </div>
       <div className="article-comments-container">
         <CommentsCard comments={data?.comments} />
