@@ -13,12 +13,14 @@ import "./ArticleCard.scss";
 
 const ArticleCard = (props) => {
   // PROPS
-  const { title = "", text = [], link = "" } = props;
+  const { title = "", text = [] } = props;
 
   // CONSTANTS USING LIBRARYS
 
   // CONSTANTS USING HOOKS
   const navigate = useNavigate();
+  console.log(title);
+  console.log(text);
 
   // GENERAL CONSTANTS
 
