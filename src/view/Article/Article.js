@@ -33,9 +33,10 @@ const Article = () => {
   // USE EFFECT FUNCTION
   useEffect(() => {
     dispatch(handleArticle(id));
+    console.log(data);
   }, []);
   // REQUEST API FUNCTIONS
-  console.log(data);
+
   // HANDLERS FUNCTIONS
   return (
     <div className="article-container">
