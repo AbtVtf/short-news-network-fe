@@ -40,9 +40,7 @@ const Article = () => {
   return (
     <div className="article-container">
       <div className="article-content-container">
-        {/* {data.title[0] && (
-          <ArticleCard title={data?.title[0]?.title} text={data?.text} />
-        )} */}
+        {/* <ArticleCard title={data?.title?.title} text={data?.text} /> */}
       </div>
       <div className="article-comments-container">
         <CommentsCard comments={data?.comments} />

@@ -42,7 +42,9 @@ const CommentInput = () => {
       comment: comment,
     };
     dispatch(handleComment(finalComment));
-    dispatch(handleArticle(idTitle));
+    setTimeout(() => {
+      dispatch(handleArticle(idTitle));
+    }, 1000);
     setComment("");
   };
   return (
