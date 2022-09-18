@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { handleAll, handleCategory, handleLogin } from "../api/sessionApi";
+import {
+  handleAll,
+  handleArticle,
+  handleCategory,
+  handleComment,
+  handleLogin,
+} from "../api/sessionApi";
 
 export const sessionSlice = createSlice({
   name: "session",
@@ -8,20 +14,22 @@ export const sessionSlice = createSlice({
     category: "country",
     selectedNews: [],
     token: "10",
-
     loggedState: {
       loggedIn: false,
       token: null,
-      email: "",
+      username: "",
+      userId: 0,
     },
+    article: {},
+    titleId: 0,
   },
 
   reducers: {
     handleChangeCategory: (state, action) => {
       state.category = action.payload;
     },
-    handleChangeUsername: (state, action) => {
-      state.loggedState.email = action.payload;
+    handleChangeArticle: (state, action) => {
+      state.titleId = action.payload;
     },
   },
   extraReducers: {
@@ -36,6 +44,17 @@ export const sessionSlice = createSlice({
       state.errorMessage = action.error.message;
     },
 
+    // ============= handleCategory REQUEST HANDLERS ============= //
+    [handleArticle.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [handleArticle.fulfilled]: (state, action) => {
+      state.article = action.payload;
+    },
+    [handleArticle.rejected]: (state, action) => {
+      state.errorMessage = action.error.message;
+    },
+
     // ============= HANDLE INDIVIDUAL CATEGORIES ============= //
     [handleCategory.pending]: (state) => {
       state.isLoading = true;
@@ -47,6 +66,17 @@ export const sessionSlice = createSlice({
       state.errorMessage = action.error.message;
     },
 
+    // ============= HANDLE COMMENT ============= //
+    [handleComment.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [handleComment.fulfilled]: (state, action) => {
+      console.log("commented");
+    },
+    [handleComment.rejected]: (state, action) => {
+      state.errorMessage = action.error.message;
+    },
+
     // ============= HANDLE LOGIN ============= //
 
     [handleLogin.pending]: (state) => {
@@ -55,6 +85,8 @@ export const sessionSlice = createSlice({
     [handleLogin.fulfilled]: (state, action) => {
       state.loggedState.accessToken = action.payload.data["accessToken"];
       state.loggedState.loggedIn = true;
+      state.loggedState.username = action.payload.data["username"];
+      state.loggedState.userId = action.payload.data["id_user"];
     },
     [handleLogin.rejected]: (state, action) => {
       state.errorMessage = action.error.message;
@@ -63,11 +95,15 @@ export const sessionSlice = createSlice({
 });
 
 export const isLoading = (state) => state.session.isLoading;
+export const article = (state) => state.session.article;
+export const titleId = (state) => state.session.titleId;
 export const token = (state) => state.session.loggedState.token;
+export const userId = (state) => state.session.loggedState.userId;
+export const username = (state) => state.session.loggedState.username;
 export const loggedIn = (state) => state.session.loggedState.loggedIn;
 export const category = (state) => state.session.category;
 export const selectedNews = (state) => state.session.selectedNews;
-export const { handleChangeCategory, handleChangeUsername } =
+export const { handleChangeCategory, handleChangeArticle } =
   sessionSlice.actions;
 
 export default sessionSlice.reducer;

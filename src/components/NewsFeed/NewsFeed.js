@@ -15,7 +15,11 @@ import europe from "./images/europe-black.png";
 import globe from "./images/globe-black.png";
 import { useDispatch, useSelector } from "react-redux";
 import { handleAll } from "../../api/sessionApi";
-import { selectedNews, category } from "../../slices/sessionSlice";
+import {
+  selectedNews,
+  category,
+  handleChangeArticle,
+} from "../../slices/sessionSlice";
 
 // CONSTANTS & MOCKS
 
@@ -62,6 +66,7 @@ const NewsFeed = () => {
   // HANDLERS FUNCTIONS
 
   const handleArticle = (id) => {
+    dispatch(handleChangeArticle(id));
     navigate(`/article/${id}`);
   };
 

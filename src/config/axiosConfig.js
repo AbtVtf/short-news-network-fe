@@ -1,4 +1,10 @@
 import axios from "axios";
+
+let store;
+
+export const injectStore = (_store) => {
+  store = _store;
+};
 // import store from "../store/store";
 // import { handleLogOutUser } from "slices/sessionSlice";
 
@@ -33,7 +39,7 @@ export const REST = axios.create({
 
 // REST.interceptors.request.use(
 //   async (config) => {
-//     const token = store.getState().session.token;
+//     const token = store.getState().session.loggedState.token;
 //     console.log("TOKEN", token);
 //     if (token) {
 //       config.headers["Authorization"] = `Bearer ${token}`;
@@ -45,18 +51,18 @@ export const REST = axios.create({
 //   }
 // );
 
-export const checkStatus = (status) => {
-  return {
-    is200: status === 200,
-    is202: status === 202,
-    is401: status === 401,
-    is403: status === 403,
-    is405: status === 405,
-    is404: status === 404,
-    is500: status === 500,
-    is501: status === 501,
-  };
-};
+// export const checkStatus = (status) => {
+//   return {
+//     is200: status === 200,
+//     is202: status === 202,
+//     is401: status === 401,
+//     is403: status === 403,
+//     is405: status === 405,
+//     is404: status === 404,
+//     is500: status === 500,
+//     is501: status === 501,
+//   };
+// };
 
 // REST.interceptors.response.use(
 //   (response) => {
@@ -65,20 +71,6 @@ export const checkStatus = (status) => {
 //     });
 //   },
 //   async (error) => {
-//     const requestStatus = checkStatus(error.response.status);
-
-//     const { dispatch } = store;
-//     // the user is not authorized
-//     if (requestStatus.is401) {
-//       // If token is not valid or expired clear lscache.
-//       // Also, here you can do refresh token API call
-//       if (window.location.pathname !== "/login") {
-//         dispatch(handleLogOutUser());
-//         setTimeout(() => {
-//           window.location = "/login";
-//         }, 500);
-//       }
-//     }
 //     return Promise.reject(error);
 //   }
 // );

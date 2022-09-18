@@ -4,9 +4,7 @@ import { persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
 import userSlice from "../slices/userSlice";
 import sessionSlice from "../slices/sessionSlice";
-// import { localforage } from "localforage";
-import storage from "redux-persist/lib/storage";
-// import storageSession from "redux-persist/es/storage/session";
+import localforage from "localforage";
 
 const reducers = combineReducers({
   user: userSlice,
@@ -15,7 +13,7 @@ const reducers = combineReducers({
 
 const persistConfig = {
   key: "root",
-  storage: storage,
+  storage: localforage,
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

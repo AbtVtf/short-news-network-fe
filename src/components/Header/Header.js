@@ -22,7 +22,7 @@ const Header = () => {
   const navigate = useNavigate();
   let isLogged = useSelector(loggedIn);
   // GENERAL CONSTANTS
-  console.log(isLogged);
+
   // USE EFFECT FUNCTION
 
   // REQUEST API FUNCTIONS
@@ -35,6 +35,7 @@ const Header = () => {
 
   const handleRegister = () => {
     if (isLogged) {
+      navigate(`/profile`);
     } else {
       navigate(`/register`);
     }

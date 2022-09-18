@@ -8,6 +8,7 @@ import Header from "../components/Header/Header";
 import Article from "../view/Article/Article";
 import Feed from "../view/Feed/Feed";
 import RegisterPage from "../view/RegisterPage/RegisterPage";
+import ProfilePage from "../view/ProfilePage/ProfilePage";
 
 const AppRoutes = () => {
   // CONSTANTS USING HOOKS
@@ -21,6 +22,8 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Feed />} />
+
+      <Route path="/profile" element={<ProfilePage />} />
 
       <Route path="/article/:id" element={<Article />} />
 

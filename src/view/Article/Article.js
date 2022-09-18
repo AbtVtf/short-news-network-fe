@@ -5,6 +5,11 @@ import React, { useEffect, useState } from "react";
 import "./Article.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import ArticleCard from "../../components/ArticleCard/ArticleCard";
+import CommentsCard from "../../components/CommentsCard/CommentsCard";
+import CommentInput from "../../components/CommentInput/CommentInput";
+import { useDispatch, useSelector } from "react-redux";
+import { article, loggedIn } from "../../slices/sessionSlice";
+import { handleArticle } from "../../api/sessionApi";
 // LIBRARIES
 
 // CONSTANTS & MOCKS
@@ -18,23 +23,20 @@ const Article = () => {
   // CONSTANTS USING LIBRARYS
 
   // CONSTANTS USING HOOKS
-  const [data, setData] = useState();
-
+  // const [data, setData] = useState();
+  const dispatch = useDispatch();
+  const data = useSelector(article);
+  const logged = useSelector(loggedIn);
   const { id } = useParams();
   // GENERAL CONSTANTS
 
   // USE EFFECT FUNCTION
   useEffect(() => {
-    axios
-      .get(`https://short-news-network.herokuapp.com/article?id=${id}`)
-      .then((response) => {
-        setData(response["data"]);
-      });
+    dispatch(handleArticle(id));
   }, []);
   // REQUEST API FUNCTIONS
 
   // HANDLERS FUNCTIONS
-
   return (
     <div className="article-container">
       <div className="article-content-container">
@@ -44,6 +46,14 @@ const Article = () => {
           text={data?.text}
         />
       </div>
+      <div className="article-comments-container">
+        <CommentsCard comments={data?.comments} />
+      </div>
+      {logged && (
+        <div className="article-comments-input-container">
+          <CommentInput />
+        </div>
+      )}
     </div>
   );
 };

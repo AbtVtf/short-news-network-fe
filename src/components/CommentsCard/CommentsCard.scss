@@ -1,0 +1,40 @@
+.component-comments-card-container {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  border-radius: 10px;
+  background: rgb(25, 99, 224);
+  background: linear-gradient(
+    307deg,
+    rgba(25, 99, 224, 0.6320903361344538) 0%,
+    rgba(33, 55, 96, 0.7021183473389356) 34%,
+    rgba(36, 36, 41, 0.7665441176470589) 100%
+  );
+  box-shadow: 2px 10px 15px 5px rgba(0, 0, 0, 0.56);
+  .component-comments-card-wrapper {
+    padding-left: 5%;
+    display: flex;
+    color: white;
+    border-radius: 5px;
+    // margin-left: 5px;
+    margin-right: 5%;
+    margin-bottom: 20px;
+    .component-comments-user {
+      font-family: "Roboto";
+      font-size: 20px;
+      font-weight: 200;
+      margin: 0;
+      width: 100%;
+    }
+    // .component-comments-comment {
+    //   margin: 0;
+    //   width: 80%;
+    //   font-family: "Roboto";
+    //   font-size: 20px;
+    //   font-weight: 400;
+    //   display: flex;
+    //   flex-wrap: wrap;
+    // }
+  }
+}

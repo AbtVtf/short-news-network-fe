@@ -8,7 +8,6 @@ import { register } from "../../api/userApi";
 import { handleLogin } from "../../api/sessionApi";
 import { message } from "../../slices/userSlice";
 import { useNavigate } from "react-router-dom";
-import { handleChangeUsername } from "../../slices/sessionSlice";
 // LIBRARIES
 
 // CONSTANTS & MOCKS
@@ -43,12 +42,10 @@ const RegisterCard = () => {
 
     if (isLogin) {
       dispatch(handleLogin({ name: username, password: password }));
-      dispatch(handleChangeUsername(username));
       navigate("/");
     } else {
       dispatch(register({ name: username, password: password })).then((res) => {
         if (res["payload"] === "username taken") {
-          console.log("taken");
           setErrorMessage("Username already in use");
         } else if (res["payload"] === 201) {
           setIsLogin(true);
