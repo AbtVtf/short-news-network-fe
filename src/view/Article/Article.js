@@ -34,7 +34,7 @@ const Article = () => {
   useEffect(() => {
     dispatch(handleArticle(id));
     console.log(data);
-  }, [data]);
+  }, []);
   // REQUEST API FUNCTIONS
 
   // HANDLERS FUNCTIONS
