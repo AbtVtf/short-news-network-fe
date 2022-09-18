@@ -1,6 +1,7 @@
 import React from "react";
 
 // LIBRARIES
+import "./App.scss";
 import { BrowserRouter } from "react-router-dom";
 import Header from "./components/Header/Header";
 import AppRoutes from "./config/appRoutes";
@@ -12,10 +13,10 @@ const App = () => {
   console.log(height);
   return (
     <BrowserRouter>
-      <div style={{ backgroundColor: "#181923", height: "100vh" }}>
-        <Header style={{ top: "0px", position: "sticky", zIndex: "99" }} />
-        <AppRoutes />
+      <div className="test">
+        <Header />
       </div>
+      <AppRoutes />
     </BrowserRouter>
   );
 };

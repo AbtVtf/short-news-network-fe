@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Header from "../../components/Header/Header";
 
 // STYLES
 import "./Article.scss";
@@ -21,7 +20,6 @@ const Article = () => {
   // CONSTANTS USING HOOKS
   const [data, setData] = useState();
 
-  const navigate = useNavigate();
   const { id } = useParams();
   // GENERAL CONSTANTS
 

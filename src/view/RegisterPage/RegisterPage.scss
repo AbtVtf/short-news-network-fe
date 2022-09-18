@@ -1,7 +1,9 @@
 .page-register-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  // align-items: center;
+  height: 90vh;
+  background-color: #181923;
   .page-register-card-container {
     margin-top: 50px;
   }

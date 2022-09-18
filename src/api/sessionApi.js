@@ -24,3 +24,15 @@ export const handleCategory = createAsyncThunk(
     }
   }
 );
+
+export const handleLogin = createAsyncThunk(
+  "user/login",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await REST.post("/login", data);
+      return response;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);

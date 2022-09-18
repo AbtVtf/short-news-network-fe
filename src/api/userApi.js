@@ -6,10 +6,8 @@ export const register = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await REST.post("/register", data);
-      // console.log(response.status);
       return response.status;
     } catch (err) {
-      // console.log(err);
       return rejectWithValue(err.response.data);
     }
   }

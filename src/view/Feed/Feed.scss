@@ -1,13 +1,47 @@
 .feed-container {
-  .feed-header-container {
-    top: 0px;
-    position: sticky;
-    z-index: 9999;
-    height: 9vh;
-  }
-  .feed-content-container {
-    margin-top: 30px;
+  background-color: #181923;
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+  .component-header-filter-container {
+    width: 80vw;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #1963ed3b;
+    border-radius: 5px;
 
-    height: auto;
+    .component-header-filter-text {
+      font-size: 40px;
+      margin: 0;
+      font-weight: 450;
+      color: #1963ed;
+      font-family: "Roboto";
+      margin-right: 20px;
+    }
+    .MuiFormLabel-root {
+      font-size: 20px;
+      font-weight: 450;
+      color: #1963ed;
+      border: none;
+    }
+    .MuiInputBase-root {
+      text-align: center;
+      font-size: 25px;
+
+      font-weight: 550;
+      letter-spacing: 2px;
+      color: #1963ed;
+      height: 40px;
+    }
+    .MuiOutlinedInput-notchedOutline {
+      border: none;
+    }
+
+    .MuiList-root {
+      background-color: black;
+    }
   }
 }
