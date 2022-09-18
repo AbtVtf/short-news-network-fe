@@ -4,9 +4,12 @@ import React, { useState } from "react";
 import "./CommentInput.scss";
 import SendIcon from "@mui/icons-material/Send";
 import { useDispatch, useSelector } from "react-redux";
-import { useSelect } from "@mui/base";
 import { titleId, userId, username } from "../../slices/sessionSlice";
-import { handleArticle, handleComment } from "../../api/sessionApi";
+import {
+  handleArticle,
+  handleComment,
+  handleComments,
+} from "../../api/sessionApi";
 // LIBRARIES
 
 // CONSTANTS & MOCKS
@@ -42,9 +45,8 @@ const CommentInput = () => {
       comment: comment,
     };
     dispatch(handleComment(finalComment));
-
     dispatch(handleArticle(idTitle));
-
+    dispatch(handleComments(idTitle));
     setComment("");
   };
   return (

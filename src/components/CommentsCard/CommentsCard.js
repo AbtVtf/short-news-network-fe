@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { comments } from "../../slices/sessionSlice";
 
 // STYLES
 import "./CommentsCard.scss";
@@ -11,14 +13,13 @@ import "./CommentsCard.scss";
 
 // COMPONENTS
 
-const CommentsCard = (props) => {
+const CommentsCard = () => {
   // PROPS
-  const { comments = [] } = props;
 
   // CONSTANTS USING LIBRARYS
 
   // CONSTANTS USING HOOKS
-
+  const articlComms = useSelector(comments);
   // GENERAL CONSTANTS
 
   // USE EFFECT FUNCTION
@@ -29,9 +30,9 @@ const CommentsCard = (props) => {
 
   return (
     <>
-      {comments.length > 0 && (
+      {articlComms.length > 0 && (
         <div className="component-comments-card-container">
-          {comments.map((element, index) => {
+          {articlComms.map((element, index) => {
             return (
               <div className="component-comments-card-wrapper">
                 <div className="component-comments-user">

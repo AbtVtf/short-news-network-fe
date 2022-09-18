@@ -4,6 +4,7 @@ import {
   handleArticle,
   handleCategory,
   handleComment,
+  handleComments,
   handleLogin,
 } from "../api/sessionApi";
 
@@ -22,6 +23,7 @@ export const sessionSlice = createSlice({
     },
     article: null,
     titleId: 0,
+    comments: [],
   },
 
   reducers: {
@@ -52,6 +54,17 @@ export const sessionSlice = createSlice({
       state.article = action.payload;
     },
     [handleArticle.rejected]: (state, action) => {
+      state.errorMessage = action.error.message;
+    },
+
+    // ============= HANDLE COMMENTS ============= //
+    [handleComments.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [handleComments.fulfilled]: (state, action) => {
+      state.comments = action.payload;
+    },
+    [handleComments.rejected]: (state, action) => {
       state.errorMessage = action.error.message;
     },
 
@@ -96,6 +109,7 @@ export const sessionSlice = createSlice({
 
 export const isLoading = (state) => state.session.isLoading;
 export const article = (state) => state.session.article;
+export const comments = (state) => state.session.comments;
 export const titleId = (state) => state.session.titleId;
 export const token = (state) => state.session.loggedState.token;
 export const userId = (state) => state.session.loggedState.userId;

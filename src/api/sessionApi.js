@@ -62,6 +62,18 @@ export const handleArticle = createAsyncThunk(
   }
 );
 
+export const handleComments = createAsyncThunk(
+  "session/handleComments",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await REST.get(`/comments?id=${data}`);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 export const handleUserLikes = createAsyncThunk(
   "session/handleUserLikes",
   async (data, { rejectWithValue }) => {
