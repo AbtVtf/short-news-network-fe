@@ -46,33 +46,32 @@ const RegisterCard = () => {
       dispatch(handleChangeUsername(username));
       navigate("/");
     } else {
-      if (!hasSpecialChars && username.length > 6 && password.length > 6) {
-        dispatch(register({ name: username, password: password })).then(
-          (res) => {
-            if (res["payload"] === "username taken") {
-              console.log("taken");
-              setErrorMessage("Username already in use");
-            } else if (res["payload"] === 201) {
-              setIsLogin(true);
-              setErrorMessage("Register was successful");
+      dispatch(register({ name: username, password: password })).then((res) => {
+        if (res["payload"] === "username taken") {
+          console.log("taken");
+          setErrorMessage("Username already in use");
+        } else if (res["payload"] === 201) {
+          setIsLogin(true);
+          setErrorMessage("Register was successful");
 
-              setUsername("");
-              setPassword("");
-            }
-          }
-        );
-      }
+          setUsername("");
+          setPassword("");
+        }
+      });
+      // if (!hasSpecialChars && username.length > 6 && password.length > 6) {
+
+      // }
     }
 
-    if (password < 6 && !isLogin) {
-      setErrorMessage("Password needs to be at least 6 characters long");
-    }
-    if (username.length < 6 && !isLogin) {
-      setErrorMessage("Username needs to be at least 6 characters long");
-    }
-    if (hasSpecialChars && !isLogin) {
-      setErrorMessage("Username can contain only letters and numbers");
-    }
+    // if (password < 6 && !isLogin) {
+    //   setErrorMessage("Password needs to be at least 6 characters long");
+    // }
+    // if (username.length < 6 && !isLogin) {
+    //   setErrorMessage("Username needs to be at least 6 characters long");
+    // }
+    // if (hasSpecialChars && !isLogin) {
+    //   setErrorMessage("Username can contain only letters and numbers");
+    // }
   };
   return (
     <div className="component-register-card-container">
