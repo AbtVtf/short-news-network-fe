@@ -41,8 +41,8 @@ const Article = () => {
     <div className="article-container">
       <div className="article-content-container">
         <ArticleCard
-          title={data?.title[0].title}
-          link={data?.link[0].link}
+          title={data?.title[0]?.title}
+          link={data?.link[0]?.link}
           text={data?.text}
         />
       </div>
