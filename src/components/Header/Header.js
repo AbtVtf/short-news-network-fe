@@ -52,7 +52,7 @@ const Header = (props) => {
   const location = useLocation();
 
   const handleHome = () => {
-    navigate(`/`);
+    navigate(`/register`);
   };
 
   return (

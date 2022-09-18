@@ -30,8 +30,7 @@ const RegisterPage = () => {
   return (
     <div className="page-register-container">
       <div className="page-register-card-container">
-        <p>test</p>
-        {/* <RegisterCard /> */}
+        <RegisterCard />
       </div>
     </div>
   );
