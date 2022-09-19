@@ -19,8 +19,6 @@ const ArticleCard = (props) => {
 
   // CONSTANTS USING HOOKS
   const navigate = useNavigate();
-  console.log(title);
-  console.log(text);
 
   // GENERAL CONSTANTS
 
@@ -51,8 +49,12 @@ const ArticleCard = (props) => {
         <p className="component-article-title">{title}</p>
       </div>
       <div className="component-article-text-wrapper">
-        {text?.map((item) => {
-          return <p className="component-article-text-wrapper">{item}</p>;
+        {text?.map((item, index) => {
+          return (
+            <p className="component-article-text-wrapper" key={index}>
+              {item}
+            </p>
+          );
         })}
       </div>
     </div>

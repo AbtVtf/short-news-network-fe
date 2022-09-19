@@ -41,7 +41,7 @@ const Article = () => {
   return (
     <div className="article-container">
       <div className="article-content-container">
-        {/* <ArticleCard title={data?.title?.title} text={data?.text} /> */}
+        <ArticleCard title={data?.title?.title} text={data?.text} />
       </div>
       <div className="article-comments-container">
         <CommentsCard comments={data?.comments} />

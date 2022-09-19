@@ -23,7 +23,7 @@ export const sessionSlice = createSlice({
     },
     article: null,
     titleId: 0,
-    comments: [],
+    // comments: ["test"],
   },
 
   reducers: {

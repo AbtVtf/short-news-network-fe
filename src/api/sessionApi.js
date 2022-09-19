@@ -41,7 +41,7 @@ export const handleComment = createAsyncThunk(
   "session/handleComment",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await REST.post("/comment", data);
+      const response = await REST.post("/add-comment", data);
       return response;
     } catch (err) {
       return rejectWithValue(err.response.data);
