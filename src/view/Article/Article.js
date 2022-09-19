@@ -8,7 +8,7 @@ import ArticleCard from "../../components/ArticleCard/ArticleCard";
 import CommentsCard from "../../components/CommentsCard/CommentsCard";
 import CommentInput from "../../components/CommentInput/CommentInput";
 import { useDispatch, useSelector } from "react-redux";
-import { article, loggedIn } from "../../slices/sessionSlice";
+import { article, comments, loggedIn } from "../../slices/sessionSlice";
 import { handleArticle, handleGetComments } from "../../api/sessionApi";
 // LIBRARIES
 
@@ -27,6 +27,7 @@ const Article = () => {
   const dispatch = useDispatch();
   const data = useSelector(article);
   const logged = useSelector(loggedIn);
+  const allComments = useSelector(comments);
   const { id } = useParams();
   // GENERAL CONSTANTS
 
@@ -43,9 +44,11 @@ const Article = () => {
       <div className="article-content-container">
         <ArticleCard title={data?.title?.title} text={data?.text} />
       </div>
-      <div className="article-comments-container">
-        <CommentsCard id={id} />
-      </div>
+      {allComments.length > 0 && (
+        <div className="article-comments-container">
+          <CommentsCard id={id} />
+        </div>
+      )}
       {logged && (
         <div className="article-comments-input-container">
           <CommentInput />
