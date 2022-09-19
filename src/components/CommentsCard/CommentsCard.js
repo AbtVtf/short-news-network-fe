@@ -40,9 +40,9 @@ const CommentsCard = (props) => {
   console.log(allComments);
   return (
     <div className="component-comments-card-container">
-      {allComments.map((comment, index) => {
+      {allComments?.map((comment, index) => {
         return (
-          <div className="component-comments-card-wrapper">
+          <div className="component-comments-card-wrapper" key={index}>
             <p>
               <span className="component-comments-card-user">
                 {comment.username}
