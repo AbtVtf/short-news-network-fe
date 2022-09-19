@@ -4,7 +4,7 @@ import {
   handleArticle,
   handleCategory,
   handleComment,
-  handleComments,
+  handleGetComments,
   handleLogin,
 } from "../api/sessionApi";
 
@@ -23,7 +23,7 @@ export const sessionSlice = createSlice({
     },
     article: null,
     titleId: 0,
-    // comments: ["test"],
+    comments: [],
   },
 
   reducers: {
@@ -58,13 +58,13 @@ export const sessionSlice = createSlice({
     },
 
     // ============= HANDLE COMMENTS ============= //
-    [handleComments.pending]: (state) => {
+    [handleGetComments.pending]: (state) => {
       state.isLoading = true;
     },
-    [handleComments.fulfilled]: (state, action) => {
+    [handleGetComments.fulfilled]: (state, action) => {
       state.comments = action.payload;
     },
-    [handleComments.rejected]: (state, action) => {
+    [handleGetComments.rejected]: (state, action) => {
       state.errorMessage = action.error.message;
     },
 

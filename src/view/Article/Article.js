@@ -9,7 +9,7 @@ import CommentsCard from "../../components/CommentsCard/CommentsCard";
 import CommentInput from "../../components/CommentInput/CommentInput";
 import { useDispatch, useSelector } from "react-redux";
 import { article, loggedIn } from "../../slices/sessionSlice";
-import { handleArticle } from "../../api/sessionApi";
+import { handleArticle, handleGetComments } from "../../api/sessionApi";
 // LIBRARIES
 
 // CONSTANTS & MOCKS
@@ -33,7 +33,7 @@ const Article = () => {
   // USE EFFECT FUNCTION
   useEffect(() => {
     dispatch(handleArticle(id));
-    console.log(data);
+    dispatch(handleGetComments(id));
   }, []);
   // REQUEST API FUNCTIONS
 
@@ -44,7 +44,7 @@ const Article = () => {
         <ArticleCard title={data?.title?.title} text={data?.text} />
       </div>
       <div className="article-comments-container">
-        <CommentsCard comments={data?.comments} />
+        <CommentsCard id={id} />
       </div>
       {logged && (
         <div className="article-comments-input-container">

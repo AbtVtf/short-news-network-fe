@@ -62,11 +62,11 @@ export const handleArticle = createAsyncThunk(
   }
 );
 
-export const handleComments = createAsyncThunk(
-  "session/handleComments",
+export const handleGetComments = createAsyncThunk(
+  "session/handleGetComments",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await REST.get(`/comments?id=${data}`);
+      const response = await REST.get(`/get-comments?id=${data}`);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);

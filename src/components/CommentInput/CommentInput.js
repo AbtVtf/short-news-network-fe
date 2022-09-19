@@ -8,7 +8,7 @@ import { titleId, userId, username } from "../../slices/sessionSlice";
 import {
   handleArticle,
   handleComment,
-  handleComments,
+  handleGetComments,
 } from "../../api/sessionApi";
 // LIBRARIES
 
@@ -45,8 +45,11 @@ const CommentInput = () => {
       comment: comment,
     };
     dispatch(handleComment(finalComment));
-    dispatch(handleArticle(idTitle));
-    dispatch(handleComments(idTitle));
+    setTimeout(() => {
+      dispatch(handleGetComments(idTitle)).then(
+        window.scrollTo(0, document.body.scrollHeight)
+      );
+    }, 800);
     setComment("");
   };
   return (
