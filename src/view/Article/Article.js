@@ -37,7 +37,7 @@ const Article = () => {
     dispatch(handleGetComments(id));
   }, []);
   // REQUEST API FUNCTIONS
-  console.log(data?.title[0].title);
+
   // HANDLERS FUNCTIONS
   return (
     <div className="article-container">

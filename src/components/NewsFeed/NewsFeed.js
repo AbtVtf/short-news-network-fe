@@ -5,6 +5,8 @@ import NewsCard from "../NewsCard/NewsCard";
 // STYLES
 import "./NewsFeed.scss";
 import { useNavigate } from "react-router-dom";
+import Skeleton from "@mui/material/Skeleton";
+
 // LIBRARIES
 import africa from "./images/africa-black.png";
 import americas from "./images/americas-black.png";
@@ -69,31 +71,41 @@ const NewsFeed = () => {
     dispatch(handleChangeArticle(id));
     navigate(`/article/${id}`);
   };
-
+  console.log(news);
   return (
     <div
       className="component-news-feed-container"
       style={{ backgroundImage: `url(${background})` }}
     >
-      <div className="component-cards-container">
-        {news?.map((item, index) => {
-          return (
-            <div
-              className="component-card-wrapper"
-              key={index}
-              onClick={() => {
-                handleArticle(item["id_title"]);
-              }}
-            >
-              <NewsCard
-                index={index + 1}
-                title={item.title}
-                category={item.category}
-              />
-            </div>
-          );
-        })}
-      </div>
+      {news.length > 0 ? (
+        <div className="component-cards-container">
+          {news?.map((item, index) => {
+            return (
+              <div
+                className="component-card-wrapper"
+                key={index}
+                onClick={() => {
+                  handleArticle(item["id_title"]);
+                }}
+              >
+                <NewsCard
+                  index={index + 1}
+                  title={item.title}
+                  category={item.category}
+                />
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="component-skeleton-container">
+          <Skeleton animation="wave" height={90} width="80vw" />
+          <Skeleton animation="wave" height={90} width="80vw" />
+          <Skeleton animation="wave" height={90} width="80vw" />
+          <Skeleton animation="wave" height={90} width="80vw" />
+          <Skeleton animation="wave" height={90} width="80vw" />
+        </div>
+      )}
     </div>
   );
 };

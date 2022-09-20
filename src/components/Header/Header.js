@@ -1,11 +1,12 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loggedIn } from "../../slices/sessionSlice";
+import { handleLogout, loggedIn, username } from "../../slices/sessionSlice";
 
 // STYLES
 import "./Header.scss";
 import Person2Icon from "@mui/icons-material/Person2";
+import LogoutIcon from "@mui/icons-material/Logout";
 // LIBRARIES
 
 // CONSTANTS & MOCKS
@@ -20,11 +21,16 @@ const Header = () => {
   // CONSTANTS USING LIBRARYS
 
   // CONSTANTS USING HOOKS
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  let isLogged = useSelector(loggedIn);
-  // GENERAL CONSTANTS
 
+  // GENERAL CONSTANTS
+  let isLogged = useSelector(loggedIn);
+  let user = useSelector(username);
   // USE EFFECT FUNCTION
+  useEffect(() => {
+    // console.log(user);
+  }, []);
 
   // REQUEST API FUNCTIONS
 
@@ -35,11 +41,16 @@ const Header = () => {
   };
 
   const handleRegister = () => {
-    if (isLogged) {
-      navigate(`/profile`);
-    } else {
-      navigate(`/register`);
-    }
+    navigate(`/register`);
+  };
+
+  const handleLogoutUser = () => {
+    dispatch(handleLogout());
+    navigate(`/register`);
+  };
+
+  const handleProfile = () => {
+    navigate(`/profile`);
   };
 
   return (
@@ -49,18 +60,19 @@ const Header = () => {
       </p>
 
       <div className="component-header-buttons-container">
-        <button
-          className="component-header-register-button"
-          onClick={handleRegister}
-        >
-          {isLogged ? (
-            <div className="component-header-register-button-icon">
-              <Person2Icon />
-            </div>
-          ) : (
-            "Sign In"
-          )}
-        </button>
+        {isLogged ? (
+          <div className="component-header-register-button-icon">
+            <Person2Icon onClick={handleProfile} />
+            <LogoutIcon onClick={handleLogoutUser} />
+          </div>
+        ) : (
+          <button
+            className="component-header-register-button"
+            onClick={handleRegister}
+          >
+            Sign In
+          </button>
+        )}
       </div>
     </div>
   );

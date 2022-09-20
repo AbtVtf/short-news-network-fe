@@ -5,7 +5,7 @@
   box-shadow: 2px 10px 15px 5px rgba(0, 0, 0, 0.56);
   display: flex;
   align-items: center;
-  padding-left: 10%;
+  padding-left: 3%;
   justify-content: space-between;
   .component-header-logo-text {
     font-family: "Roboto";
@@ -17,9 +17,22 @@
     padding: 0;
   }
   .component-header-buttons-container {
-    margin-right: 10%;
+    margin-right: 3%;
     display: flex;
     flex-direction: column;
+    .component-header-register-button-icon {
+      display: flex;
+      align-items: flex-end;
+      // background-color: red;
+      gap: 25px;
+      // justify-content: center;
+      // align-items: center;
+      // padding-bottom: 3px;
+      .MuiSvgIcon-root {
+        font-size: 35px;
+        color: #1963ed;
+      }
+    }
 
     .component-header-register-button {
       // width: 20vw;
@@ -27,23 +40,13 @@
       font-family: "Roboto";
       letter-spacing: 1px;
       font-weight: 300;
-      padding: 5px 15px;
+      // padding: 5px 15px;
+
       background-color: transparent;
       color: white;
       font-size: 25px;
       border: none;
       border-radius: 5px;
-      .component-header-register-button-icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-bottom: 3px;
-
-        .MuiSvgIcon-root {
-          font-size: 50px;
-          color: #1963ed;
-        }
-      }
     }
   }
 }

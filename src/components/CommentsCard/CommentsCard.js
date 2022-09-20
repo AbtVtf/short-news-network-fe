@@ -46,7 +46,6 @@ const CommentsCard = (props) => {
   return (
     <div className="component-comments-card-container">
       {allComments?.map((comment, index) => {
-        console.log(comment.id_comment);
         return (
           <div className="component-comments-card-wrapper" key={index}>
             <div className="component-comments-card-delete-comment-wrapper">

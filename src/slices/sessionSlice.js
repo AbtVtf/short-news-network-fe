@@ -17,7 +17,7 @@ export const sessionSlice = createSlice({
     selectedNews: [],
     loggedState: {
       loggedIn: false,
-      token: "10",
+      token: "",
       username: "",
       userId: 0,
     },
@@ -35,6 +35,13 @@ export const sessionSlice = createSlice({
     },
     handleClearArticle: (state) => {
       state.article = null;
+    },
+    handleLogout: (state) => {
+      state.loggedState.loggedIn = false;
+      state.loggedState.token = "";
+      state.loggedState.username = "";
+      state.loggedState.userId = 0;
+      console.log("did it boss");
     },
   },
   extraReducers: {
@@ -81,18 +88,14 @@ export const sessionSlice = createSlice({
 
     // ============= HANDLE COMMENT ============= //
     [handleComment.pending]: (state) => {},
-    [handleComment.fulfilled]: (state, action) => {
-      console.log("commented");
-    },
+    [handleComment.fulfilled]: (state, action) => {},
     [handleComment.rejected]: (state, action) => {
       state.errorMessage = action.error.message;
     },
 
     // ============= HANDLE COMMENT ============= //
     [handleRemoveComment.pending]: (state) => {},
-    [handleRemoveComment.fulfilled]: (state, action) => {
-      console.log("removed");
-    },
+    [handleRemoveComment.fulfilled]: (state, action) => {},
     [handleRemoveComment.rejected]: (state, action) => {
       state.errorMessage = action.error.message;
     },
@@ -122,7 +125,11 @@ export const username = (state) => state.session.loggedState.username;
 export const loggedIn = (state) => state.session.loggedState.loggedIn;
 export const category = (state) => state.session.category;
 export const selectedNews = (state) => state.session.selectedNews;
-export const { handleChangeCategory, handleChangeArticle, handleClearArticle } =
-  sessionSlice.actions;
+export const {
+  handleChangeCategory,
+  handleChangeArticle,
+  handleClearArticle,
+  handleLogout,
+} = sessionSlice.actions;
 
 export default sessionSlice.reducer;
