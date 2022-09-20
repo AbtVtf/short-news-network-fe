@@ -53,12 +53,15 @@ const CommentsCard = (props) => {
                 <ClearIcon onClick={() => deleteComment(comment.id_comment)} />
               )}
             </div>{" "}
-            <p className="component-comments-card-text-wrapper">
-              <span className="component-comments-card-user">
+            <div className="component-comments-card-text-wrapper">
+              <span
+                className="component-comments-card-user"
+                style={{ fontWeight: "600" }}
+              >
                 {comment.username}
               </span>{" "}
-              {comment.comment}
-            </p>
+              <span style={{ fontWeight: "300" }}>{comment.comment}</span>
+            </div>
           </div>
         );
       })}

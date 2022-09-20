@@ -30,6 +30,7 @@ export const handleLogin = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await REST.post("/login", data);
+      console.log(response);
       return response;
     } catch (err) {
       return rejectWithValue(err.response.data);

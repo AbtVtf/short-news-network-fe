@@ -6,6 +6,7 @@ import "./ArticleCard.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { handleClearArticle, isLoading } from "../../slices/sessionSlice";
 import Skeleton from "@mui/material/Skeleton";
+import TurnedInNotIcon from "@mui/icons-material/TurnedInNot";
 // LIBRARIES
 
 // CONSTANTS & MOCKS
@@ -39,6 +40,7 @@ const ArticleCard = (props) => {
     <div className="component-article-card-container">
       <div className="component-article-button-container">
         <ArrowBackIosIcon onClick={handleBack} />
+        <TurnedInNotIcon />
       </div>
       {loading ? (
         <>

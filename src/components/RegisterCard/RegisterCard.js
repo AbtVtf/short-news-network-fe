@@ -41,27 +41,30 @@ const RegisterCard = () => {
   const handleRegister = () => {
     const specialChars = /[` !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
     const hasSpecialChars = specialChars.test(username);
-    console.log({ hasSpecialChars });
+
     if (isLogin) {
       dispatch(handleLogin({ name: username, password: password })).then(
         (res) => {
-          console.log(res.payload.status);
+          console.log(res);
           if (res.payload.status === 200) {
             setUsername("");
             setPassword("");
+            setPassword2("");
             setIsLogin(true);
             navigate("/");
+          }
+          if (res.error.message === "Rejected") {
+            setErrorMessage("Wrong username or password");
           }
         }
       );
     } else {
       if (
-        // !hasSpecialChars &&
-        // username.length > 6 &&
-        // password.length > 6 &&
+        !hasSpecialChars &&
+        username.length > 6 &&
+        password.length > 6 &&
         password === password2
       ) {
-        console.log("working");
         dispatch(register({ name: username, password: password })).then(
           (res) => {
             if (res["payload"] === "username taken") {
@@ -72,6 +75,7 @@ const RegisterCard = () => {
               setErrorMessage("Register was successful");
               setUsername("");
               setPassword("");
+              setPassword2("");
             }
           }
         );
@@ -98,7 +102,6 @@ const RegisterCard = () => {
       <p className="component-register-title">
         {isLogin ? "Sign in your account:" : "Sign up a new account"}
       </p>
-      {/* <p className="component-register-input-label"></p> */}
       <input
         placeholder="Account"
         className="component-register-input-user"
@@ -111,7 +114,6 @@ const RegisterCard = () => {
         }}
         type="text"
       ></input>
-      {/* <p className="component-register-input-label"></p> */}
       <input
         placeholder="Password"
         className="component-register-input-pass"

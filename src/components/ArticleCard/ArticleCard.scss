@@ -37,7 +37,9 @@
   }
   .component-article-button-container {
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
+    // padding-right: 10%;
+    // padding-left: 10%;
     width: 100%;
     // gap: 20px;
     .component-article-button-back {

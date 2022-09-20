@@ -71,7 +71,7 @@ const NewsFeed = () => {
     dispatch(handleChangeArticle(id));
     navigate(`/article/${id}`);
   };
-  console.log(news);
+
   return (
     <div
       className="component-news-feed-container"
