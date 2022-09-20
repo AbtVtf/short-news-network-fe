@@ -49,11 +49,11 @@ const CommentsCard = (props) => {
         console.log(comment.id_comment);
         return (
           <div className="component-comments-card-wrapper" key={index}>
-            {user === comment.username && (
-              <div className="component-comments-card-delete-comment-wrapper">
+            <div className="component-comments-card-delete-comment-wrapper">
+              {user === comment.username && (
                 <ClearIcon onClick={() => deleteComment(comment.id_comment)} />
-              </div>
-            )}{" "}
+              )}
+            </div>{" "}
             <p className="component-comments-card-text-wrapper">
               <span className="component-comments-card-user">
                 {comment.username}
