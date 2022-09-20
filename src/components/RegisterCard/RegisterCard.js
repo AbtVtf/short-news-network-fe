@@ -61,8 +61,8 @@ const RegisterCard = () => {
     } else {
       if (
         !hasSpecialChars &&
-        username.length > 6 &&
-        password.length > 6 &&
+        // username.length > 6 &&
+        // password.length > 6 &&
         password === password2
       ) {
         dispatch(register({ name: username, password: password })).then(
