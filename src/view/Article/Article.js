@@ -37,12 +37,12 @@ const Article = () => {
     dispatch(handleGetComments(id));
   }, []);
   // REQUEST API FUNCTIONS
-
+  console.log(data?.title[0].title);
   // HANDLERS FUNCTIONS
   return (
     <div className="article-container">
       <div className="article-content-container">
-        <ArticleCard title={data?.title?.title} text={data?.text} />
+        <ArticleCard title={data?.title[0].title} text={data?.text} />
       </div>
       {allComments.length > 0 && (
         <div className="article-comments-container">

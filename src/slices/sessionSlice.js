@@ -6,6 +6,7 @@ import {
   handleComment,
   handleGetComments,
   handleLogin,
+  handleRemoveComment,
 } from "../api/sessionApi";
 
 export const sessionSlice = createSlice({
@@ -14,10 +15,9 @@ export const sessionSlice = createSlice({
     isLoading: false,
     category: "country",
     selectedNews: [],
-    token: "10",
     loggedState: {
       loggedIn: false,
-      token: null,
+      token: "10",
       username: "",
       userId: 0,
     },
@@ -33,6 +33,9 @@ export const sessionSlice = createSlice({
     handleChangeArticle: (state, action) => {
       state.titleId = action.payload;
     },
+    handleClearArticle: (state) => {
+      state.article = null;
+    },
   },
   extraReducers: {
     // ============= handleCategory REQUEST HANDLERS ============= //
@@ -46,21 +49,20 @@ export const sessionSlice = createSlice({
       state.errorMessage = action.error.message;
     },
 
-    // ============= handleCategory REQUEST HANDLERS ============= //
+    // ============= HANDLE SINGLE ARTICLE ============= //
     [handleArticle.pending]: (state) => {
       state.isLoading = true;
     },
     [handleArticle.fulfilled]: (state, action) => {
       state.article = action.payload;
+      state.isLoading = false;
     },
     [handleArticle.rejected]: (state, action) => {
       state.errorMessage = action.error.message;
     },
 
     // ============= HANDLE COMMENTS ============= //
-    [handleGetComments.pending]: (state) => {
-      state.isLoading = true;
-    },
+    [handleGetComments.pending]: (state) => {},
     [handleGetComments.fulfilled]: (state, action) => {
       state.comments = action.payload;
     },
@@ -69,9 +71,7 @@ export const sessionSlice = createSlice({
     },
 
     // ============= HANDLE INDIVIDUAL CATEGORIES ============= //
-    [handleCategory.pending]: (state) => {
-      state.isLoading = true;
-    },
+    [handleCategory.pending]: (state) => {},
     [handleCategory.fulfilled]: (state, action) => {
       state.selectedNews = action.payload["data"];
     },
@@ -80,9 +80,7 @@ export const sessionSlice = createSlice({
     },
 
     // ============= HANDLE COMMENT ============= //
-    [handleComment.pending]: (state) => {
-      state.isLoading = true;
-    },
+    [handleComment.pending]: (state) => {},
     [handleComment.fulfilled]: (state, action) => {
       console.log("commented");
     },
@@ -90,11 +88,18 @@ export const sessionSlice = createSlice({
       state.errorMessage = action.error.message;
     },
 
+    // ============= HANDLE COMMENT ============= //
+    [handleRemoveComment.pending]: (state) => {},
+    [handleRemoveComment.fulfilled]: (state, action) => {
+      console.log("removed");
+    },
+    [handleRemoveComment.rejected]: (state, action) => {
+      state.errorMessage = action.error.message;
+    },
+
     // ============= HANDLE LOGIN ============= //
 
-    [handleLogin.pending]: (state) => {
-      state.isLoading = true;
-    },
+    [handleLogin.pending]: (state) => {},
     [handleLogin.fulfilled]: (state, action) => {
       state.loggedState.accessToken = action.payload.data["accessToken"];
       state.loggedState.loggedIn = true;
@@ -117,7 +122,7 @@ export const username = (state) => state.session.loggedState.username;
 export const loggedIn = (state) => state.session.loggedState.loggedIn;
 export const category = (state) => state.session.category;
 export const selectedNews = (state) => state.session.selectedNews;
-export const { handleChangeCategory, handleChangeArticle } =
+export const { handleChangeCategory, handleChangeArticle, handleClearArticle } =
   sessionSlice.actions;
 
 export default sessionSlice.reducer;

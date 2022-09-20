@@ -5,6 +5,7 @@ import { loggedIn } from "../../slices/sessionSlice";
 
 // STYLES
 import "./Header.scss";
+import Person2Icon from "@mui/icons-material/Person2";
 // LIBRARIES
 
 // CONSTANTS & MOCKS
@@ -52,7 +53,13 @@ const Header = () => {
           className="component-header-register-button"
           onClick={handleRegister}
         >
-          {isLogged ? "Profile" : "Sign In"}
+          {isLogged ? (
+            <div className="component-header-register-button-icon">
+              <Person2Icon />
+            </div>
+          ) : (
+            "Sign In"
+          )}
         </button>
       </div>
     </div>

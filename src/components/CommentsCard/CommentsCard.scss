@@ -13,29 +13,35 @@
   );
   box-shadow: 2px 10px 15px 5px rgba(0, 0, 0, 0.56);
   .component-comments-card-wrapper {
+    width: 80vw;
     padding-left: 5%;
     display: flex;
     color: white;
     border-radius: 5px;
-    // margin-left: 5px;
     margin-right: 5%;
     margin-bottom: 20px;
-    .component-comments-card-user {
-      font-family: "Roboto";
-      font-size: 20px;
-      font-weight: 200;
+
+    // justify-content: flex-end;
+    .component-comments-card-text-wrapper {
       margin: 0;
-      width: 100%;
-      margin-right: 10px;
+      .component-comments-card-user {
+        font-family: "Roboto";
+        font-size: 20px;
+        font-weight: 200;
+        margin: 0;
+        width: 100%;
+        margin-right: 10px;
+      }
     }
-    // .component-comments-comment {
-    //   margin: 0;
-    //   width: 80%;
-    //   font-family: "Roboto";
-    //   font-size: 20px;
-    //   font-weight: 400;
-    //   display: flex;
-    //   flex-wrap: wrap;
-    // }
+    .component-comments-card-delete-comment-wrapper {
+      display: flex;
+      // justify-content: center;
+      // align-items: center;
+      margin-right: 10px;
+      .MuiSvgIcon-root {
+        color: white;
+        font-size: 30px;
+      }
+    }
   }
 }

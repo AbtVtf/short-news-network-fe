@@ -1,14 +1,9 @@
 import axios from "axios";
-
-let store;
-
-export const injectStore = (_store) => {
-  store = _store;
-};
 // import store from "../store/store";
 // import { handleLogOutUser } from "slices/sessionSlice";
 
 const baseURL = "https://short-news-network.herokuapp.com/";
+// const baseURL = "http://192.168.0.193:8080/";
 
 // export const REST_WITH_UPLOAD = axios.create({
 //   baseURL: baseURL,
@@ -28,6 +23,12 @@ const baseURL = "https://short-news-network.herokuapp.com/";
 //   },
 // });
 
+// let store;
+let store;
+export const injectStore = (_store) => {
+  store = _store;
+};
+
 export const REST = axios.create({
   baseURL: baseURL,
   timeout: 10000,
@@ -37,19 +38,19 @@ export const REST = axios.create({
   },
 });
 
-// REST.interceptors.request.use(
-//   async (config) => {
-//     const token = store.getState().session.loggedState.token;
-//     console.log("TOKEN", token);
-//     if (token) {
-//       config.headers["Authorization"] = `Bearer ${token}`;
-//     }
-//     return config;
-//   },
-//   (error) => {
-//     return Promise.reject(error);
-//   }
-// );
+REST.interceptors.request.use(
+  async (config) => {
+    const token = store?.getState().session.loggedState.accessToken;
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    console.log(error);
+    return Promise.reject(error);
+  }
+);
 
 // export const checkStatus = (status) => {
 //   return {

@@ -49,6 +49,18 @@ export const handleComment = createAsyncThunk(
   }
 );
 
+export const handleRemoveComment = createAsyncThunk(
+  "session/handleRemoveComment",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await REST.delete(`/remove-comment?id=${data}`);
+      return response;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 export const handleArticle = createAsyncThunk(
   "session/handleArticle",
   async (data, { rejectWithValue }) => {

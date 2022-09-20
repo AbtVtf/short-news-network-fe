@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { handleGetComments } from "../../api/sessionApi";
-import { comments } from "../../slices/sessionSlice";
+import { handleGetComments, handleRemoveComment } from "../../api/sessionApi";
+import { comments, username } from "../../slices/sessionSlice";
 
 // STYLES
 import "./CommentsCard.scss";
-
+import ClearIcon from "@mui/icons-material/Clear";
 // LIBRARIES
 
 // CONSTANTS & MOCKS
@@ -29,6 +29,7 @@ const CommentsCard = (props) => {
 
   // CONSTANTS USING HOOKS
   const allComments = useSelector(comments);
+  const user = useSelector(username);
   // GENERAL CONSTANTS
 
   // USE EFFECT FUNCTION
@@ -36,14 +37,24 @@ const CommentsCard = (props) => {
   // REQUEST API FUNCTIONS
 
   // HANDLERS FUNCTIONS
-  console.log(id);
-  console.log(allComments);
+  const deleteComment = (commentId) => {
+    dispatch(handleRemoveComment(commentId));
+    setTimeout(() => {
+      dispatch(handleGetComments(id));
+    }, 800);
+  };
   return (
     <div className="component-comments-card-container">
       {allComments?.map((comment, index) => {
+        console.log(comment.id_comment);
         return (
           <div className="component-comments-card-wrapper" key={index}>
-            <p>
+            {user === comment.username && (
+              <div className="component-comments-card-delete-comment-wrapper">
+                <ClearIcon onClick={() => deleteComment(comment.id_comment)} />
+              </div>
+            )}{" "}
+            <p className="component-comments-card-text-wrapper">
               <span className="component-comments-card-user">
                 {comment.username}
               </span>{" "}
