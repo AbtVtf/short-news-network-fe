@@ -87,11 +87,61 @@ export const handleGetComments = createAsyncThunk(
   }
 );
 
+export const handleAddLike = createAsyncThunk(
+  "session/handleAddLike",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await REST.post(`/add-like`, data);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const handleRemoveLike = createAsyncThunk(
+  "session/handleRemoveLike",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await REST.post(`/remove-like`, data);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const handleGetLikes = createAsyncThunk(
+  "session/handleGetLikes",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await REST.get(`/user-likes?id=${data}`);
+
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 export const handleUserLikes = createAsyncThunk(
   "session/handleUserLikes",
   async (data, { rejectWithValue }) => {
     try {
       const response = await REST.get(`/user-likes`);
+
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const handleGetLikedTitles = createAsyncThunk(
+  "session/handleGetLikedTitles",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await REST.get(`/get-liked-titles`, data);
 
       return response.data;
     } catch (err) {

@@ -16,11 +16,14 @@ import china from "./images/china-black.png";
 import europe from "./images/europe-black.png";
 import globe from "./images/globe-black.png";
 import { useDispatch, useSelector } from "react-redux";
-import { handleAll } from "../../api/sessionApi";
+import { handleAll, handleGetLikes } from "../../api/sessionApi";
 import {
   selectedNews,
   category,
   handleChangeArticle,
+  userLikes,
+  userId,
+  handleChangeLikedTitles,
 } from "../../slices/sessionSlice";
 
 // CONSTANTS & MOCKS
@@ -40,9 +43,24 @@ const NewsFeed = () => {
   const dispatch = useDispatch();
   const news = useSelector(selectedNews);
   const selectedCat = useSelector(category);
+  const allLikes = useSelector(userLikes);
+  const idUser = useSelector(userId);
   // GENERAL CONSTANTS
 
   // USE EFFECT FUNCTION
+  useEffect(() => {
+    dispatch(handleGetLikes(idUser));
+    let allLikedTitles = [];
+    allLikes.forEach((like) => {
+      news.forEach((article) => {
+        if (like["id_title"] === article["id_title"]) {
+          allLikedTitles.push(article);
+        }
+      });
+    });
+    dispatch(handleChangeLikedTitles(allLikedTitles));
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
 

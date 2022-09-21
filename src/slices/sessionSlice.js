@@ -1,12 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  handleAddLike,
   handleAll,
   handleArticle,
   handleCategory,
   handleComment,
   handleGetComments,
+  handleGetLikedTitles,
+  handleGetLikes,
   handleLogin,
   handleRemoveComment,
+  handleRemoveLike,
 } from "../api/sessionApi";
 
 export const sessionSlice = createSlice({
@@ -20,6 +24,8 @@ export const sessionSlice = createSlice({
       token: "",
       username: "",
       userId: 0,
+      userLikes: [],
+      userLikesTitles: [],
     },
     article: null,
     titleId: 0,
@@ -42,6 +48,9 @@ export const sessionSlice = createSlice({
       state.loggedState.username = "";
       state.loggedState.userId = 0;
       console.log("did it boss");
+    },
+    handleChangeLikedTitles: (state, action) => {
+      state.loggedState.userLikesTitles = action.payload;
     },
   },
   extraReducers: {
@@ -68,12 +77,34 @@ export const sessionSlice = createSlice({
       state.errorMessage = action.error.message;
     },
 
+    // ============= HANDLE GET LIKED TITLES ============= //
+
+    [handleGetLikedTitles.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [handleGetLikedTitles.fulfilled]: (state, action) => {
+      console.log("aici", action.payload);
+      // state.loggedState.userLikesTitles = action.payload;
+    },
+    [handleGetLikedTitles.rejected]: (state, action) => {
+      state.errorMessage = action.error.message;
+    },
+
     // ============= HANDLE COMMENTS ============= //
     [handleGetComments.pending]: (state) => {},
     [handleGetComments.fulfilled]: (state, action) => {
       state.comments = action.payload;
     },
     [handleGetComments.rejected]: (state, action) => {
+      state.errorMessage = action.error.message;
+    },
+
+    // ============= HANDLE GET USER LIKES ============= //
+    [handleGetLikes.pending]: (state) => {},
+    [handleGetLikes.fulfilled]: (state, action) => {
+      state.loggedState.userLikes = action.payload;
+    },
+    [handleGetLikes.rejected]: (state, action) => {
       state.errorMessage = action.error.message;
     },
 
@@ -86,14 +117,28 @@ export const sessionSlice = createSlice({
       state.errorMessage = action.error.message;
     },
 
-    // ============= HANDLE COMMENT ============= //
+    // ============= HANDLE ADD LIKE ============= //
+    [handleAddLike.pending]: (state) => {},
+    [handleAddLike.fulfilled]: (state, action) => {},
+    [handleAddLike.rejected]: (state, action) => {
+      state.errorMessage = action.error.message;
+    },
+
+    // ============= HANDLE REMOVE LIKE ============= //
+    [handleRemoveLike.pending]: (state) => {},
+    [handleRemoveLike.fulfilled]: (state, action) => {},
+    [handleRemoveLike.rejected]: (state, action) => {
+      state.errorMessage = action.error.message;
+    },
+
+    // ============= HANDLE ADD COMMENT ============= //
     [handleComment.pending]: (state) => {},
     [handleComment.fulfilled]: (state, action) => {},
     [handleComment.rejected]: (state, action) => {
       state.errorMessage = action.error.message;
     },
 
-    // ============= HANDLE COMMENT ============= //
+    // ============= HANDLE REMOVE COMMENT ============= //
     [handleRemoveComment.pending]: (state) => {},
     [handleRemoveComment.fulfilled]: (state, action) => {},
     [handleRemoveComment.rejected]: (state, action) => {
@@ -122,7 +167,10 @@ export const titleId = (state) => state.session.titleId;
 export const token = (state) => state.session.loggedState.token;
 export const userId = (state) => state.session.loggedState.userId;
 export const username = (state) => state.session.loggedState.username;
+export const userLikesTitles = (state) =>
+  state.session.loggedState.userLikesTitles;
 export const loggedIn = (state) => state.session.loggedState.loggedIn;
+export const userLikes = (state) => state.session.loggedState.userLikes;
 export const category = (state) => state.session.category;
 export const selectedNews = (state) => state.session.selectedNews;
 export const {
@@ -130,6 +178,7 @@ export const {
   handleChangeArticle,
   handleClearArticle,
   handleLogout,
+  handleChangeLikedTitles,
 } = sessionSlice.actions;
 
 export default sessionSlice.reducer;

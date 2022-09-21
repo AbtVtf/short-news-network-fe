@@ -42,7 +42,11 @@ const Article = () => {
   return (
     <div className="article-container">
       <div className="article-content-container">
-        <ArticleCard title={data?.title[0].title} text={data?.text} />
+        <ArticleCard
+          title={data?.title[0].title}
+          text={data?.text}
+          id_title={id}
+        />
       </div>
       {allComments.length > 0 && (
         <div className="article-comments-container">

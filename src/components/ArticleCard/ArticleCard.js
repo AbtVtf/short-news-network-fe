@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 // STYLES
 import "./ArticleCard.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { handleClearArticle, isLoading } from "../../slices/sessionSlice";
+import {
+  article,
+  handleClearArticle,
+  isLoading,
+  userId,
+  userLikes,
+} from "../../slices/sessionSlice";
 import Skeleton from "@mui/material/Skeleton";
 import TurnedInNotIcon from "@mui/icons-material/TurnedInNot";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import {
+  handleAddLike,
+  handleGetLikedTitles,
+  handleGetLikes,
+  handleRemoveLike,
+} from "../../api/sessionApi";
 // LIBRARIES
 
 // CONSTANTS & MOCKS
@@ -17,7 +30,7 @@ import TurnedInNotIcon from "@mui/icons-material/TurnedInNot";
 
 const ArticleCard = (props) => {
   // PROPS
-  const { title = "", text = [] } = props;
+  const { title = "", text = [], id_title = 0 } = props;
 
   // CONSTANTS USING LIBRARYS
 
@@ -25,9 +38,19 @@ const ArticleCard = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loading = useSelector(isLoading);
+  const allLikes = useSelector(userLikes);
+  const idUser = useSelector(userId);
+  const [isLiked, setIsLiked] = useState(false);
   // GENERAL CONSTANTS
 
   // USE EFFECT FUNCTION
+  useEffect(() => {
+    allLikes.forEach((like) => {
+      if (like["id_title"] == id_title) {
+        setIsLiked(true);
+      }
+    });
+  }, []);
 
   // REQUEST API FUNCTIONS
 
@@ -36,11 +59,43 @@ const ArticleCard = (props) => {
     dispatch(handleClearArticle());
     navigate(`/`);
   };
+  const handleLike = () => {
+    let userLike = {
+      id_user: idUser,
+      id_title: id_title,
+    };
+    dispatch(handleAddLike(userLike)).then(() => {
+      dispatch(handleGetLikes(idUser)).then(() => {
+        // dispatch(handleGetLikedTitles(allLikes));
+      });
+
+      setIsLiked(true);
+    });
+  };
+
+  const handleDislike = () => {
+    let userLike = {
+      id_user: idUser,
+      id_title: id_title,
+    };
+
+    dispatch(handleRemoveLike(userLike)).then(() => {
+      dispatch(handleGetLikes(idUser)).then(() => {
+        // dispatch(handleGetLikedTitles(allLikes));
+      });
+      setIsLiked(false);
+    });
+  };
+
   return (
     <div className="component-article-card-container">
       <div className="component-article-button-container">
         <ArrowBackIosIcon onClick={handleBack} />
-        <TurnedInNotIcon />
+        {isLiked ? (
+          <BookmarkIcon onClick={handleDislike} />
+        ) : (
+          <TurnedInNotIcon onClick={handleLike} />
+        )}
       </div>
       {loading ? (
         <>
@@ -51,7 +106,7 @@ const ArticleCard = (props) => {
       ) : (
         <>
           <div className="component-article-title-wrapper">
-            <p className="component-article-title">{title}</p>
+            {title && <p className="component-article-title">{title}</p>}
           </div>
           <div className="component-article-text-wrapper">
             {text?.map((item, index) => {

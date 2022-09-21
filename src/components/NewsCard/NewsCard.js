@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // STYLES
 import "./NewsCard.scss";
@@ -16,8 +16,13 @@ const NewsCard = (props) => {
   const { index = 0, title = "", category = "" } = props;
 
   // CONSTANTS USING LIBRARYS
-
+  const [isFromLeft, setIsFromLeft] = useState(false);
   // CONSTANTS USING HOOKS
+  useEffect(() => {
+    if (index % 2 === 0) {
+      setIsFromLeft(true);
+    }
+  }, []);
 
   // GENERAL CONSTANTS
 
@@ -31,7 +36,9 @@ const NewsCard = (props) => {
   }
 
   return (
-    <div className="component-news-card-container">
+    <div
+      className={`component-news-card-container ${isFromLeft ? "sfl" : "sfr"}`}
+    >
       <div className="component-news-header-container">
         <div
           className="component-news-category-wrapper"

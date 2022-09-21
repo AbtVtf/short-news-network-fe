@@ -1,4 +1,7 @@
+import { useSelect } from "@mui/base";
 import React from "react";
+import { useSelector } from "react-redux";
+import { userLikesTitles } from "../../slices/sessionSlice";
 
 // STYLES
 import "./ProfileLikes.scss";
@@ -13,9 +16,7 @@ import "./ProfileLikes.scss";
 
 const ProfileLikes = () => {
   // PROPS
-
   // CONSTANTS USING LIBRARYS
-
   // CONSTANTS USING HOOKS
 
   // GENERAL CONSTANTS

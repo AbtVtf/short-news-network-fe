@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // STYLES
 import "./RegisterCard.scss";
@@ -34,7 +34,11 @@ const RegisterCard = () => {
   // GENERAL CONSTANTS
 
   // USE EFFECT FUNCTION
-
+  useEffect(() => {
+    setUsername("");
+    setPassword("");
+    setPassword2("");
+  }, []);
   // REQUEST API FUNCTIONS
 
   // HANDLERS FUNCTIONS
