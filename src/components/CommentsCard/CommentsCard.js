@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleGetComments, handleRemoveComment } from "../../api/sessionApi";
 import { comments, username } from "../../slices/sessionSlice";
+import ArticleComment from "../ArticleComment/ArticleComment";
 
 // STYLES
 import "./CommentsCard.scss";
-import ClearIcon from "@mui/icons-material/Clear";
 // LIBRARIES
 
 // CONSTANTS & MOCKS
@@ -18,7 +18,6 @@ const CommentsCard = (props) => {
   // PROPS
   const { id } = props;
   const dispatch = useDispatch();
-
   // GENERAL CONSTANTS
 
   // USE EFFECT FUNCTION
@@ -37,32 +36,12 @@ const CommentsCard = (props) => {
   // REQUEST API FUNCTIONS
 
   // HANDLERS FUNCTIONS
-  const deleteComment = (commentId) => {
-    dispatch(handleRemoveComment(commentId));
-    setTimeout(() => {
-      dispatch(handleGetComments(id));
-    }, 1000);
-  };
+
   return (
     <div className="component-comments-card-container">
       {allComments?.map((comment, index) => {
         return (
-          <div className="component-comments-card-wrapper" key={index}>
-            <div className="component-comments-card-delete-comment-wrapper">
-              {user === comment.username && (
-                <ClearIcon onClick={() => deleteComment(comment.id_comment)} />
-              )}
-            </div>{" "}
-            <div className="component-comments-card-text-wrapper">
-              <span
-                className="component-comments-card-user"
-                style={{ fontWeight: "600" }}
-              >
-                {comment.username}
-              </span>{" "}
-              <span style={{ fontWeight: "300" }}>{comment.comment}</span>
-            </div>
-          </div>
+          <ArticleComment id={id} index={index} user={user} comment={comment} />
         );
       })}
     </div>

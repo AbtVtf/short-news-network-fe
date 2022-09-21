@@ -1,0 +1,45 @@
+.component-comments-card-wrapper {
+  width: 80vw;
+  //  padding-left: 5%;
+  display: flex;
+  justify-content: flex-start;
+  color: white;
+  border-radius: 5px;
+  // padding-right: 15px;
+  // padding-left: 45px;
+  margin-bottom: 20px;
+
+  .component-comments-card-text-wrapper {
+    margin: 0;
+    .component-comments-card-user {
+      font-family: "Roboto";
+      font-size: 20px;
+      font-weight: 200;
+      margin: 0;
+      width: 100%;
+      margin-right: 10px;
+    }
+  }
+  .component-comments-card-delete-comment-wrapper {
+    display: flex;
+
+    margin-right: 10px;
+    width: 30px;
+    min-width: 30px;
+    .MuiSvgIcon-root {
+      color: white;
+      font-size: 30px;
+    }
+  }
+}
+.animation-delete {
+  animation: fadeOut 1s;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

@@ -44,12 +44,11 @@ const CommentInput = () => {
       username: user,
       comment: comment,
     };
-    dispatch(handleComment(finalComment));
-    setTimeout(() => {
+    dispatch(handleComment(finalComment)).then(() => {
       dispatch(handleGetComments(idTitle)).then(
         window.scrollTo(0, document.body.scrollHeight)
       );
-    }, 1000);
+    });
     setComment("");
   };
   return (
