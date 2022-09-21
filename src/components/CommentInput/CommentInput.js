@@ -49,7 +49,7 @@ const CommentInput = () => {
       dispatch(handleGetComments(idTitle)).then(
         window.scrollTo(0, document.body.scrollHeight)
       );
-    }, 800);
+    }, 1000);
     setComment("");
   };
   return (

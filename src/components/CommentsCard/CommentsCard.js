@@ -41,7 +41,7 @@ const CommentsCard = (props) => {
     dispatch(handleRemoveComment(commentId));
     setTimeout(() => {
       dispatch(handleGetComments(id));
-    }, 800);
+    }, 1000);
   };
   return (
     <div className="component-comments-card-container">
