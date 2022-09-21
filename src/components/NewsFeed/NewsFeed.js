@@ -49,16 +49,16 @@ const NewsFeed = () => {
 
   // USE EFFECT FUNCTION
   useEffect(() => {
-    dispatch(handleGetLikes(idUser));
-    let allLikedTitles = [];
-    allLikes.forEach((like) => {
-      news.forEach((article) => {
-        if (like["id_title"] === article["id_title"]) {
-          allLikedTitles.push(article);
-        }
-      });
-    });
-    dispatch(handleChangeLikedTitles(allLikedTitles));
+    // dispatch(handleGetLikes(idUser));
+    // let allLikedTitles = [];
+    // allLikes.forEach((like) => {
+    //   news.forEach((article) => {
+    //     if (like["id_title"] === article["id_title"]) {
+    //       allLikedTitles.push(article);
+    //     }
+    //   });
+    // });
+    // dispatch(handleChangeLikedTitles(allLikedTitles));
   }, []);
 
   useEffect(() => {
