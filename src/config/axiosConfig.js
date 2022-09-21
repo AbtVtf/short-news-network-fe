@@ -2,8 +2,8 @@ import axios from "axios";
 // import store from "../store/store";
 // import { handleLogOutUser } from "slices/sessionSlice";
 
-// const baseURL = "https://short-news-network.herokuapp.com/";
-const baseURL = "http://192.168.0.193:8080/";
+const baseURL = "https://short-news-network.herokuapp.com/";
+// const baseURL = "http://192.168.0.193:8080/";
 
 // export const REST_WITH_UPLOAD = axios.create({
 //   baseURL: baseURL,
