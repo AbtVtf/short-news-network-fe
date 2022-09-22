@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { handleLogout, loggedIn, username } from "../../slices/sessionSlice";
+import {
+  handleClearComments,
+  handleLogout,
+  loggedIn,
+  username,
+} from "../../slices/sessionSlice";
 
 // STYLES
 import "./Header.scss";
@@ -37,19 +42,23 @@ const Header = () => {
   // HANDLERS FUNCTIONS
 
   const handleHome = () => {
+    dispatch(handleClearComments());
     navigate(`/`);
   };
 
   const handleRegister = () => {
+    dispatch(handleClearComments());
     navigate(`/register`);
   };
 
   const handleLogoutUser = () => {
+    dispatch(handleClearComments());
     dispatch(handleLogout());
     navigate(`/register`);
   };
 
   const handleProfile = () => {
+    dispatch(handleClearComments());
     navigate(`/profile`);
   };
 

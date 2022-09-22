@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 
 // STYLES
 import "./NewsCard.scss";
+import Skeleton from "@mui/material/Skeleton";
+
 // LIBRARIES
 import PropTypes from "prop-types";
 
@@ -39,20 +41,31 @@ const NewsCard = (props) => {
     <div
       className={`component-news-card-container ${isFromLeft ? "sfl" : "sfr"}`}
     >
-      <div className="component-news-header-container">
-        <div
-          className="component-news-category-wrapper"
-          style={{ backgroundColor: "#1963ED" }}
-        >
-          <p className="component-news-category">
-            {capitalizeFirstLetter(category)}
-          </p>
+      {title ? (
+        <>
+          <div className="component-news-header-container">
+            <div
+              className="component-news-category-wrapper"
+              style={{ backgroundColor: "#1963ED" }}
+            >
+              <p className="component-news-category">
+                {capitalizeFirstLetter(category)}
+              </p>
+            </div>
+          </div>
+          <div className="component-news-title-wrapper">
+            <p className="component-news-title">{title}</p>
+          </div>
+        </>
+      ) : (
+        <div className="component-skeleton-container">
+          <Skeleton animation="wave" height={90} width="80vw" />
+          <Skeleton animation="wave" height={90} width="80vw" />
+          <Skeleton animation="wave" height={90} width="80vw" />
+          <Skeleton animation="wave" height={90} width="80vw" />
+          <Skeleton animation="wave" height={90} width="80vw" />
         </div>
-      </div>
-
-      <div className="component-news-title-wrapper">
-        <p className="component-news-title">{title}</p>
-      </div>
+      )}
     </div>
   );
 };

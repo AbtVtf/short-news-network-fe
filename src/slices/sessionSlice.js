@@ -42,6 +42,9 @@ export const sessionSlice = createSlice({
     handleClearArticle: (state) => {
       state.article = null;
     },
+    handleClearComments: (state) => {
+      state.comments = [];
+    },
     handleLogout: (state) => {
       state.loggedState.loggedIn = false;
       state.loggedState.token = "";
@@ -179,6 +182,7 @@ export const {
   handleClearArticle,
   handleLogout,
   handleChangeLikedTitles,
+  handleClearComments,
 } = sessionSlice.actions;
 
 export default sessionSlice.reducer;

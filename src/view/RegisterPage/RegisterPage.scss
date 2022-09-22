@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   // align-items: center;
-  height: 600px;
+  // height: 100vh;
   background-color: #181923;
   .page-register-card-container {
     margin-top: 50px;
@@ -12,21 +12,21 @@
 
 @-webkit-keyframes slide-right {
   0% {
-    -webkit-transform: translateX(-400px);
-    transform: translateX(-400px);
+    -webkit-transform: translateY(600px);
+    transform: translateY(600px);
   }
   100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
   }
 }
 @keyframes slide-right {
   0% {
-    -webkit-transform: translateX(-400px);
-    transform: translateX(-400px);
+    -webkit-transform: translateY(600px);
+    transform: translateY(600px);
   }
   100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
   }
 }

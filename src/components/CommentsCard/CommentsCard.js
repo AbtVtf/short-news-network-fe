@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleGetComments, handleRemoveComment } from "../../api/sessionApi";
-import { comments, username } from "../../slices/sessionSlice";
+import {
+  comments,
+  handleClearComments,
+  username,
+} from "../../slices/sessionSlice";
 import ArticleComment from "../ArticleComment/ArticleComment";
 
 // STYLES
@@ -22,6 +26,7 @@ const CommentsCard = (props) => {
 
   // USE EFFECT FUNCTION
   useEffect(() => {
+    // dispatch(handleClearComments());
     dispatch(handleGetComments(id));
   }, []);
   // CONSTANTS USING LIBRARYS

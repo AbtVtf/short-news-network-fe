@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   article,
   handleClearArticle,
+  handleClearComments,
   isLoading,
   userId,
   userLikes,
@@ -57,6 +58,7 @@ const ArticleCard = (props) => {
   // HANDLERS FUNCTIONS
   const handleBack = () => {
     dispatch(handleClearArticle());
+    dispatch(handleClearComments());
     navigate(`/`);
   };
   const handleLike = () => {
