@@ -141,8 +141,7 @@ export const handleGetLikedTitles = createAsyncThunk(
   "session/handleGetLikedTitles",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await REST.get(`/get-liked-titles`, data);
-
+      const response = await REST.get(`/get-liked-titles?id=${data}`);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);

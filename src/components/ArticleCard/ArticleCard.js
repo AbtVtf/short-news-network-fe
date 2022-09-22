@@ -8,6 +8,7 @@ import {
   article,
   handleClearArticle,
   handleClearComments,
+  isArticleLoading,
   isLoading,
   userId,
   userLikes,
@@ -38,7 +39,7 @@ const ArticleCard = (props) => {
   // CONSTANTS USING HOOKS
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const loading = useSelector(isLoading);
+  const loading = useSelector(isArticleLoading);
   const allLikes = useSelector(userLikes);
   const idUser = useSelector(userId);
   const [isLiked, setIsLiked] = useState(false);
@@ -47,6 +48,7 @@ const ArticleCard = (props) => {
   // USE EFFECT FUNCTION
   useEffect(() => {
     allLikes.forEach((like) => {
+      console.log(like, id_title);
       if (like["id_title"] == id_title) {
         setIsLiked(true);
       }
@@ -68,10 +70,9 @@ const ArticleCard = (props) => {
     };
     dispatch(handleAddLike(userLike)).then(() => {
       dispatch(handleGetLikes(idUser)).then(() => {
-        // dispatch(handleGetLikedTitles(allLikes));
+        dispatch(handleGetLikedTitles(idUser));
+        setIsLiked(true);
       });
-
-      setIsLiked(true);
     });
   };
 
@@ -83,9 +84,9 @@ const ArticleCard = (props) => {
 
     dispatch(handleRemoveLike(userLike)).then(() => {
       dispatch(handleGetLikes(idUser)).then(() => {
-        // dispatch(handleGetLikedTitles(allLikes));
+        dispatch(handleGetLikedTitles(idUser));
+        setIsLiked(false);
       });
-      setIsLiked(false);
     });
   };
 

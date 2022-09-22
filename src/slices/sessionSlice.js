@@ -17,6 +17,7 @@ export const sessionSlice = createSlice({
   name: "session",
   initialState: {
     isLoading: false,
+    isArticleLoading: false,
     category: "country",
     selectedNews: [],
     loggedState: {
@@ -70,11 +71,11 @@ export const sessionSlice = createSlice({
 
     // ============= HANDLE SINGLE ARTICLE ============= //
     [handleArticle.pending]: (state) => {
-      state.isLoading = true;
+      state.isArticleLoading = true;
     },
     [handleArticle.fulfilled]: (state, action) => {
       state.article = action.payload;
-      state.isLoading = false;
+      state.isArticleLoading = false;
     },
     [handleArticle.rejected]: (state, action) => {
       state.errorMessage = action.error.message;
@@ -86,8 +87,7 @@ export const sessionSlice = createSlice({
       state.isLoading = true;
     },
     [handleGetLikedTitles.fulfilled]: (state, action) => {
-      console.log("aici", action.payload);
-      // state.loggedState.userLikesTitles = action.payload;
+      state.loggedState.userLikesTitles = action.payload;
     },
     [handleGetLikedTitles.rejected]: (state, action) => {
       state.errorMessage = action.error.message;
@@ -121,15 +121,23 @@ export const sessionSlice = createSlice({
     },
 
     // ============= HANDLE ADD LIKE ============= //
-    [handleAddLike.pending]: (state) => {},
-    [handleAddLike.fulfilled]: (state, action) => {},
+    [handleAddLike.pending]: (state) => {
+      state.isLoading = false;
+    },
+    [handleAddLike.fulfilled]: (state, action) => {
+      state.isLoading = false;
+    },
     [handleAddLike.rejected]: (state, action) => {
       state.errorMessage = action.error.message;
     },
 
     // ============= HANDLE REMOVE LIKE ============= //
-    [handleRemoveLike.pending]: (state) => {},
-    [handleRemoveLike.fulfilled]: (state, action) => {},
+    [handleRemoveLike.pending]: (state) => {
+      state.isLoading = false;
+    },
+    [handleRemoveLike.fulfilled]: (state, action) => {
+      state.isLoading = false;
+    },
     [handleRemoveLike.rejected]: (state, action) => {
       state.errorMessage = action.error.message;
     },
@@ -164,6 +172,7 @@ export const sessionSlice = createSlice({
 });
 
 export const isLoading = (state) => state.session.isLoading;
+export const isArticleLoading = (state) => state.session.isArticleLoading;
 export const article = (state) => state.session.article;
 export const comments = (state) => state.session.comments;
 export const titleId = (state) => state.session.titleId;

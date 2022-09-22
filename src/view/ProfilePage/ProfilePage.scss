@@ -1,0 +1,17 @@
+.page-profile-container {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .profile-page-title {
+    font-size: 25px;
+    color: white;
+  }
+  .profile-page-button {
+    background: transparent;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #1963ed;
+  }
+}

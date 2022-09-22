@@ -32,9 +32,9 @@ import "./ProfilePage.scss";
 
 const ProfilePage = () => {
   // PROPS
-  const likes = useSelector(userLikesTitles);
-  const allLikes = useSelector(userLikesTitles);
-  console.log({ allLikes });
+  const titles = useSelector(userLikesTitles);
+  const idUser = useSelector(userId);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // CONSTANTS USING LIBRARYS
@@ -45,16 +45,7 @@ const ProfilePage = () => {
 
   // USE EFFECT FUNCTION
   useEffect(() => {
-    // dispatch(handleGetLikes(idUser));
-    // let allLikedTitles = [];
-    // allLikes.forEach((like) => {
-    //   news.forEach((article) => {
-    //     if (like["id_title"] === article["id_title"]) {
-    //       allLikedTitles.push(article);
-    //     }
-    //   });
-    // });
-    // dispatch(handleChangeLikedTitles(allLikedTitles));
+    dispatch(handleGetLikedTitles(idUser));
   }, []);
   // REQUEST API FUNCTIONS
 
@@ -63,27 +54,38 @@ const ProfilePage = () => {
     // dispatchEvent(handleChangeArticle(id));
     navigate(`/article/${id}`);
   };
+  const handleToNews = () => {
+    navigate(`/`);
+  };
   return (
     <div className="page-profile-container">
-      {likes?.map((item, index) => {
-        return (
-          <div
-            className="component-card-wrapper"
-            key={index}
-            onClick={() => {
-              handleArticle(item["id_title"]);
-            }}
-          >
-            <NewsCard
-              index={index + 1}
-              title={item.title}
-              category={item.category}
-            />
-          </div>
-        );
-      })}
-      <ProfileCard />
-      <ProfileLikes />
+      <p className="profile-page-title">Saved Articles</p>
+      {titles.length > 0 ? (
+        titles?.map((item, index) => {
+          return (
+            <div
+              className="component-card-wrapper"
+              key={index}
+              onClick={() => {
+                handleArticle(item["id_title"]);
+              }}
+            >
+              <NewsCard
+                index={index + 1}
+                title={item.title}
+                category={item.category}
+              />
+            </div>
+          );
+        })
+      ) : (
+        <>
+          <p className="profile-page-title">You should go read some news</p>
+          <button onClick={handleToNews} className="profile-page-button">
+            To the news
+          </button>
+        </>
+      )}
     </div>
   );
 };
