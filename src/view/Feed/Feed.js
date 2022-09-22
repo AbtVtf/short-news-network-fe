@@ -11,7 +11,7 @@ import { handleAll, handleCategory } from "../../api/sessionApi";
 
 function Feed() {
   const selectedCat = useSelector(category);
-  // const [category, setCategory] = useState("country");
+
   const dispatch = useDispatch();
   useEffect(() => {
     if (selectedCat === "country") {
