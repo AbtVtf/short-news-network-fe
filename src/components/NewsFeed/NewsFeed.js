@@ -93,7 +93,7 @@ const NewsFeed = () => {
   return (
     <div
       className="component-news-feed-container"
-      style={{ backgroundImage: `url(${background})` }}
+      // style={{ backgroundImage: `url(${background})` }}
     >
       {news.length > 0 ? (
         <div className="component-cards-container">
